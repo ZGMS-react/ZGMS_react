@@ -1,5 +1,5 @@
 # git指令
-* 通过create-react-app创建项目
+* 通过create-react-app创建项目 
 * github创建远程仓库
 * 来到本地仓库，关联远程仓库
 	* git remote add origin xxx
