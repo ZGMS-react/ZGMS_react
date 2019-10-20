@@ -14,7 +14,7 @@ class Login extends React.Component {
                     </div>
                     <div className="login_content">
                         <h2>用户登录</h2>
-                        <Form>
+                        <Form className="login_form">
                             <Form.Item>
                                 <Input prefix={<Icon type="user" />} placeholder="用户名" />
                             </Form.Item>
