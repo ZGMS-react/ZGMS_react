@@ -4,6 +4,8 @@ import { Spin } from 'antd';
 import NotMatch from '@comps/not-match';
 import routes from './config/routes';
 
+import './assets/css/reset.css'
+
 class App extends Component {
   render() {
     // Suspense用于懒加载
