@@ -1,0 +1,8 @@
+{
+  "name": "zgms_server",
+  "version": "1.0.0",
+  "dependencies": {
+    "koa": "^2.10.0",
+    "koa-router": "^7.4.0"
+  }
+}
