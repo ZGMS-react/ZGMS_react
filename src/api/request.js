@@ -34,6 +34,7 @@ instance.interceptors.response.use(
   (response) => {
     // 请求成功
     // result就是响应体数据
+    console.log(response);
     const result = response.data;
 
     if (result.status === 0) {
