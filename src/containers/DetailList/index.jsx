@@ -8,6 +8,7 @@ import { Menu, Icon, Slider, InputNumber, Row, Col, DatePicker, Tag, Pagination 
 import './index.less'
 // 引入图片
 import img from './img/01.jpg'
+import { reqDetailList } from '../../api';
 
 const { SubMenu } = Menu;
 const { RangePicker } = DatePicker;
@@ -31,6 +32,11 @@ class DetailList extends Component {
 			inputValue: value,
 		});
 	};
+
+	componentDidMount(){
+		let result = reqDetailList()
+		console.log(result)
+	}
 
 	render() {
 		const { inputValue } = this.state;
