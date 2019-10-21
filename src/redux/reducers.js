@@ -2,7 +2,7 @@
 * 根据之前的PrevState和action对象生成newState（新状态）的函数
 */
 import {combineReducers} from 'redux'
-import {SAVE_USER} from './action-types'
+import {SAVE_USER,UPDATE_DETAIL_LIST} from './action-types'
 import {getItem,setItem} from '../utils/storage'
 
 /*
@@ -28,7 +28,18 @@ function user(prevState=initUser,action) {
    }
 }
 
+// 
+function listArr(prevState=[],action){
+	switch(action.type){
+		case UPDATE_DETAIL_LIST:
+			return action.data
+		default:
+			return prevState
+	}
+}
+
 
 export default combineReducers({
-    user
+    user,
+    listArr
 })
