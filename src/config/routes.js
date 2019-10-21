@@ -10,19 +10,21 @@ const routes = [
     component: Login //组件
   },
   {
-    path:'/home',
-    component:Home
+    path: '/home',
+    component: Home
   },
   {
     path: '/detaillist',
     exact: true,
     component: DetailList
-  },{
-    path:'/order',
-    exact:true,
-    component:Order},
-    {
-    path:'/',
+  },
+  {
+    path: '/order',
+    exact: true,
+    component: Order
+  },
+  {
+    path: '/',
     redirect: '/home'
   }
 
