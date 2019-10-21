@@ -1,6 +1,6 @@
 {
-	"detailList":{
-		"status":0,
+	"detailList": {
+		"status": 0,
 		"detailList": [{
 			"id": "0",
 			"title": "通州北关  新光大中心 同类型多套房源",
@@ -111,10 +111,9 @@
 			"collectNum": "123"
 		}]
 	},
-	"home":{
-		"status":0,
-		"home":[
-			{},
+	"home": {
+		"status": 0,
+		"home": [{},
 			{},
 			{},
 			{},
@@ -125,13 +124,11 @@
 			{}
 		]
 	},
-	"users": [
-    {
-      "id": 1,
-      "username": "admin",
-      "phone": "18842606347",
-      "password": "123456",
-      "email": "w18842606347@163.com"
-    }
-  ]
+	"users": [{
+		"id": 1,
+		"username": "admin",
+		"phone": "18842606347",
+		"password": "123456",
+		"email": "w18842606347@163.com"
+	}]
 }

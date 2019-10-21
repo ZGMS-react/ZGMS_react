@@ -35,6 +35,7 @@ instance.interceptors.response.use(
     // 请求成功
     // result就是响应体数据
     const result = response.data;
+    console.log(result)
 
     if (result.status === 0) {
       // 功能成功 --> 后面触发then

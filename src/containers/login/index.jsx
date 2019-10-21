@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import {saveUser} from "@redux/action-creators";
 import { reqLogin } from '../../api';
 
-// @withCheckLogin
+@withCheckLogin
 //调用一个高阶组件Form.create()()是为了创建form属性，用于自定义表单校验
 @connect(
     null,
@@ -63,7 +63,7 @@ class Login extends React.Component {
                         message.success('登录成功');
 
                         //保存用户数据
-                        this.props.saveUser(result);
+                        this.props.saveUser(result.user);
 
                         //登录成功，跳转到'/'路由（用于非render方法中进行路由的跳转）
                         this.props.history.replace('/home');

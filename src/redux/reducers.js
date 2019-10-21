@@ -20,7 +20,7 @@ function user(prevState=initUser,action) {
    switch (action.type) {
        case SAVE_USER:
            //进行永久化存储
-           setItem('user',action.data.user);
+           setItem('user',action.data);
            setItem('token',action.data.token);
            return action.data;
        default:
