@@ -1,4 +1,4 @@
-import Login from '../containers/Login';
+import Login from '../containers/login';
 import DetailList from '../containers/DetailList';
 
 const routes = [{
