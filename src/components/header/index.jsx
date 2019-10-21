@@ -16,7 +16,7 @@ export default class MyHeader extends Component {
         <Menu.Item key="3">退出登录</Menu.Item>
       </Menu>
     );
-    return <Row className="wrap_header" type="row">
+    return <Row className="wrap_header">
       <Col className="logo" span={8}>
         <img src="https://s3plus.meituan.net/v1/mss_65766da973d14523b3d781fe3ac2bbac/www-assets/shared/images/logo/h-full-va3ab1f94.svg" alt="" />
       </Col>
