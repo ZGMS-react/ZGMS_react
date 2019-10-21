@@ -19,18 +19,17 @@ const routes = [
     exact: true,
     component: DetailList
   },{
-<<<<<<< HEAD
     path:'/msdetail',
     exact:true,
     component:MsDetail
-=======
+  },{
     path:'/order',
     exact:true,
-    component:Order},
-    {
+    component:Order
+  },
+  {
     path:'/',
     redirect: '/home'
->>>>>>> 9c3af33f0413a392e9ba7c9ac26e19db52049370
   }
 
 
