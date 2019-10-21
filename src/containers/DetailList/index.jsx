@@ -225,7 +225,7 @@ class DetailList extends Component {
 					</div>
 					<div className="detail-content">
 						<ul className="content-list">
-							<li className="content-item"></li>
+							<li className="content-item">
 								<img className="img" src={img} alt="" />
 								<div className="tags">
 									<ul className="tagsList">

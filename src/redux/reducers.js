@@ -1,95 +1,34 @@
 /*
-  根据prevState和action来生成newState
- */
-import { combineReducers } from 'redux';
+* 根据之前的PrevState和action对象生成newState（新状态）的函数
+*/
+import {combineReducers} from 'redux'
+import {SAVE_USER} from './action-types'
+import {getItem,setItem} from '../utils/storage'
 
-import {
-  SAVE_USER,
-  REMOVE_USER,
-  SET_TITLE,
-  GET_CATEGORIES_SUCCESS,
-  ADD_CATEGORY_SUCCESS,
-  UPDATE_CATEGORY_SUCCESS,
-  GET_ROLES_SUCCESS,
-  ADD_ROLE_SUCCESS,
-  UPDATE_ROLE_SUCCESS
-} from './action-types';
-import { setItem, getItem, removeItem } from '../utils/storage';
-
-
-// 初始化数据
-const initUser = {
-  user: getItem('user') || {},
-  token: getItem('token') || ''
+/*
+* 初始化数据
+* 1.数据虽然进行了持久化的存储，但是一旦页面进行了刷新，数据就又会进行初始化就又被清空了
+* 2.所以在redux中还需要读取数据
+*      ----在初始化中进行数据的读取，一上来就先读取数据，有就用，没有就是{}
+*
+*/
+const initUser={
+    user:getItem('user')||{},
+    token:getItem('token')||''
 };
-
-function user(prevState = initUser, action) {
-  switch (action.type) {
-    case SAVE_USER :
-      // 进行持久化存储
-      setItem('user', action.data.user);
-      setItem('token', action.data.token);
-      return action.data;
-    case REMOVE_USER :
-      removeItem('user');
-      removeItem('token');
-      return {
-        user: {},
-        token: ''
-      };
-    default :
-      return prevState;
-  }
+function user(prevState=initUser,action) {
+   switch (action.type) {
+       case SAVE_USER:
+           //进行永久化存储
+           setItem('user',action.data);
+           setItem('token',action.data.token);
+           return action.data;
+       default:
+           return prevState;
+   }
 }
 
-function title(prevState = '', action) {
-  switch (action.type) {
-    case SET_TITLE :
-      return action.data;
-    default :
-      return prevState;
-  }
-}
-
-function categories(prevState = [], action) {
-  switch (action.type) {
-    case GET_CATEGORIES_SUCCESS :
-      return action.data;
-    case ADD_CATEGORY_SUCCESS :
-      return [...prevState, action.data];
-    case UPDATE_CATEGORY_SUCCESS :
-      return prevState.map((category) => {
-        if (category._id === action.data._id) {
-          return action.data;
-        }
-        return category;
-      });
-    default :
-      return prevState;
-  }
-}
-
-function roles(prevState = [], action) {
-  switch (action.type) {
-    case GET_ROLES_SUCCESS :
-      return action.data;
-    case ADD_ROLE_SUCCESS :
-      return [...prevState, action.data];
-    case UPDATE_ROLE_SUCCESS :
-      return prevState.map((role) => {
-        if (role._id === action.data._id) {
-          return action.data;
-        }
-        return role;
-      });
-    default :
-      return prevState;
-  }
-}
 
 export default combineReducers({
-  user,
-  title,
-  categories,
-  roles
+    user
 })
