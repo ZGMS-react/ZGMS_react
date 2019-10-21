@@ -25,8 +25,13 @@ koa.use(cors({
   maxAge: 5,
   credentials: true,
   allowMethods: ['GET', 'POST', 'DELETE'], //设置允许的HTTP请求类型
-  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept','Access-Control-Allow-Origin'],
 }));
+
+koa.use(async (ctx, next) => {
+  ctx.set("Access-Control-Allow-Origin", "*")
+  await next()
+})
 
 koaRouter.get('/detailList',(ctx)=>{
 	console.log(ctx.query)
@@ -36,12 +41,13 @@ koaRouter.get('/detailList',(ctx)=>{
 // 登录
 koaRouter.post("/loginWithPassword", async (ctx) => {
   const data = ctx.request.body.data;
+  console.log(data);
   let result;
-  if (typeof data.phone === "string" && typeof data.password === "string") {
-    const user = datas.users.find(user => user.phone === data.phone);
+  if (typeof data.username === "string" && typeof data.password === "string") {
+    const user = datas.users.find(user => user.username === data.username);
     if (user && user.password === data.password) {
       user.token = "this is token";
-      result = { code: 0, user };
+      result = { status:0, code: 0, user };
     }
   }
   if (!result) {

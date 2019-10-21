@@ -25,9 +25,9 @@ instance.interceptors.request.use(
 
     return config;
   },
-  /*(err) => {
+  (err) => {
     return Promise.reject(err);
-  }*/
+  }
 );
 // 设置响应拦截器：处理响应之前触发函数
 instance.interceptors.response.use(
@@ -35,7 +35,6 @@ instance.interceptors.response.use(
     // 请求成功
     // result就是响应体数据
     const result = response.data;
-    // console.log(result);
 
     if (result.status === 0) {
       // 功能成功 --> 后面触发then
