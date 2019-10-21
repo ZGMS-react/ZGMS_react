@@ -38,8 +38,15 @@ class Login extends React.Component {
         //阻止浏览器默认行为
         e.preventDefault();
 
+        //点击登陆后再次对表单进行登录校验
+        this.props.form.validateFields((error, values
+        ) => {
+            if (!error) {
+                console.log(values)
+            }
+        })
         //登录成功，跳转到'/'路由（用于非render方法中进行路由的跳转）
-        this.props.history.replace('/');  
+        this.props.history.replace('/');
     }
     render() {
         // getFieldDecorator 专门表单校验的方法高阶组件

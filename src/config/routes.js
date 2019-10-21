@@ -1,5 +1,6 @@
-import Login from '../containers/login';
-import DetailList from '../containers/DetailList';
+import Login from '@conts/login';
+import DetailList from '@conts/DetailList';
+import Order from '@conts/Order'
 
 
 const routes = [{
@@ -11,7 +12,9 @@ const routes = [{
     exact: true,
     component: DetailList
   },{
-    
+    path:'/order',
+    exact:true,
+    component:Order
   }
 
 
