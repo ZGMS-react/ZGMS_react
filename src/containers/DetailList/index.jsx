@@ -1,5 +1,6 @@
 // 引入react
 import React, { Component } from 'react'
+import moment from 'moment'
 
 // 引入antd
 import { Menu, Icon, Slider, InputNumber, Row, Col, DatePicker, Tag, Pagination  } from 'antd';
@@ -8,7 +9,7 @@ import { Menu, Icon, Slider, InputNumber, Row, Col, DatePicker, Tag, Pagination 
 import './index.less'
 // 引入图片
 import img from './img/01.jpg'
-// import { reqDetailList } from '../../api';
+import { reqDetailList } from '../../api';
 
 const { SubMenu } = Menu;
 const { RangePicker } = DatePicker;
@@ -33,12 +34,17 @@ class DetailList extends Component {
 		});
 	};
 
-	// componentDidMount(){
-	// 	let result = reqDetailList()
-	// 	console.log(result)
-	// }
+	async componentDidMount() {
+		let result = await reqDetailList()
+		console.log(result)
+	};
+
 
 	render() {
+		function disabledDate(current) {
+			// Can not select days before today and today
+			return current && current < moment().endOf('day');
+		}
 		const { inputValue } = this.state;
 		return (
 			<div className="detail-topList">
@@ -58,18 +64,8 @@ class DetailList extends Component {
 								</span>
 							}>
 							<RangePicker
-								dateRender={current => {
-									const style = {};
-									if (current.date() === 1) {
-										style.border = '1px solid #1890ff';
-										style.borderRadius = '50%';
-									}
-									return (
-										<div className="ant-calendar-date" style={style}>
-											{current.date()}
-										</div>
-									);
-								}}
+								disabledDate={disabledDate}
+								format="YYYY-MM-DD"
 							/>
 						</SubMenu>
 						<SubMenu

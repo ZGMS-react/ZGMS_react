@@ -12,7 +12,7 @@ export const reqAddCategory = (categoryName) => axios.post('/category/add', { ca
 export const reqGetProducts = (pageNum, pageSize) => axios.get('/product/list', { params: { pageNum, pageSize } });
 
 // 请求详情列表页
-export const reqDetailList = ()=>axios.get('/detailList')
+export const reqDetailList = () => axios.get('/detailList')
 
 
 
