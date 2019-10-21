@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 // 引入antd
-import { Menu, Icon, Slider, InputNumber, Row, Col, DatePicker, Tag } from 'antd';
+import { Menu, Icon, Slider, InputNumber, Row, Col, DatePicker, Tag, Pagination  } from 'antd';
 
 // 引入样式
 import './index.less'
@@ -246,44 +246,270 @@ class DetailList extends Component {
 							<img className="img" src={img} alt="" />
 							<div className="tags">
 								<ul className="tagsList">
-									<li className="tagsItem"></li>
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
 								</ul>
 							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
 							<div className="code">
 								<span className="code1">5.0分</span>
 								|<span>整套·1居室</span>
 								|<span>可住2人</span>
 								|<span>顺义区</span>
 							</div>
-							<p className="price"></p>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
 						</li>
 						<li className="content-item">
 							<img className="img" src={img} alt="" />
 							<div className="tags">
 								<ul className="tagsList">
-									<li className="tagsItem"></li>
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
 								</ul>
 							</div>
-							<span>5.0分</span>
-							<span>整套·1居室</span>
-							<span>可住2人</span>
-							<span>顺义区</span>
-							<p className="price"></p>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
 						</li>
 						<li className="content-item">
 							<img className="img" src={img} alt="" />
 							<div className="tags">
 								<ul className="tagsList">
-									<li className="tagsItem"></li>
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
 								</ul>
 							</div>
-							<span>5.0分</span>
-							<span>整套·1居室</span>
-							<span>可住2人</span>
-							<span>顺义区</span>
-							<p className="price"></p>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
+						</li>
+						<li className="content-item">
+							<img className="img" src={img} alt="" />
+							<div className="tags">
+								<ul className="tagsList">
+									<li className="tagsItem">
+										<Tag color="gold">可做饭</Tag>
+										<Tag color="volcano">立即确认</Tag>
+										<Tag color="lime">近地铁</Tag>
+										<Tag color="cyan">全家出游</Tag>
+									</li>
+								</ul>
+							</div>
+							<p className="title">地铁公园旁loft的现代简约风格</p>
+							<div className="code">
+								<span className="code1">5.0分</span>
+								|<span>整套·1居室</span>
+								|<span>可住2人</span>
+								|<span>顺义区</span>
+							</div>
+							<p className="price">
+								<span>￥</span>
+								<span className="num">344</span>
+							</p>
 						</li>
 					</ul>
+				</div>
+				<div className="pagination">
+					<Pagination defaultCurrent={1} total={170} className="pagination-list" />
 				</div>
 			</div>
 
