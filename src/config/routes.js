@@ -1,5 +1,6 @@
-import Login from '../containers/Login';
+import Login from '../containers/login';
 import DetailList from '../containers/DetailList';
+import MsDetail from "../containers/msdetil";
 
 const routes = [{
     path: '/login', //登录路由路径
@@ -9,6 +10,10 @@ const routes = [{
     path: '/detaillist',
     exact: true,
     component: DetailList
+  },{
+    path:'/msdetail',
+    exact:true,
+    component:MsDetail
   }
 
 
