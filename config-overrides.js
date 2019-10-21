@@ -11,7 +11,7 @@ module.exports = override(
   // 自定义主题色
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: {'@primary-color': '#ffce00'},
+    modifyVars: {'@primary-color': '#FFDB41'},
   }),
   // 添加babel插件支持 装饰器 语法：简化高阶组件使用
   addDecoratorsLegacy(),
