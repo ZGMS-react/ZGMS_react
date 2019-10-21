@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Input, Icon, Button } from 'antd'
+import React from './node_modules/react';
+import { Form, Input, Icon, Button } from './node_modules/antd'
 import './index.less'
 import logo from './images/login.png'
 

@@ -1,6 +1,6 @@
 // 引入路由组件
 // 引入登录组件
-import Login from '../containers/Login';
+import Login from '../containers/login';
 // 引入列表页组件
 import DetailList from '../containers/DetailList';
 
