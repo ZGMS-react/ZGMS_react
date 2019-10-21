@@ -1,4 +1,7 @@
+// 引入路由组件
+// 引入登录组件
 import Login from '../containers/Login';
+// 引入列表页组件
 import DetailList from '../containers/DetailList';
 
 
@@ -11,7 +14,8 @@ const routes = [{
     exact: true,
     component: DetailList
   },{
-    
+    path:'/',
+    redirect: '/home'
   }
 
 
