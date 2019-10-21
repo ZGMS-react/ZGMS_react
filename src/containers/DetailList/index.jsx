@@ -8,7 +8,7 @@ import { Menu, Icon, Slider, InputNumber, Row, Col, DatePicker, Tag, Pagination 
 import './index.less'
 // 引入图片
 import img from './img/01.jpg'
-import { reqDetailList } from '../../api';
+// import { reqDetailList } from '../../api';
 
 const { SubMenu } = Menu;
 const { RangePicker } = DatePicker;
@@ -33,16 +33,16 @@ class DetailList extends Component {
 		});
 	};
 
-	componentDidMount(){
-		let result = reqDetailList()
-		console.log(result)
-	}
+	// componentDidMount(){
+	// 	let result = reqDetailList()
+	// 	console.log(result)
+	// }
 
 	render() {
 		const { inputValue } = this.state;
 		return (
-			<div className="topList">
-				<div className="topListUl">
+			<div className="detail-topList">
+				<div className="detail-topListUl">
 					{/* <li className="topListItem">北京</li> */}
 					<Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
 						<Menu.Item key="mail">
@@ -200,7 +200,7 @@ class DetailList extends Component {
 						</SubMenu>
 					</Menu>
 				</div>
-				<div className="headerList">
+				<div className="detail-headerList">
 					<ul className="hearerListUl">
 						<li className="headerItem">
 							<span>有优惠</span>
@@ -222,7 +222,7 @@ class DetailList extends Component {
 						<li className="headerItem">青旅</li>
 					</ul>
 				</div>
-				<div className="content">
+				<div className="detail-content">
 					<ul className="content-list">
 						<li className="content-item">
 							<img className="img" src={img} alt="" />
@@ -514,7 +514,7 @@ class DetailList extends Component {
 						</li>
 					</ul>
 				</div>
-				<div className="pagination">
+				<div className="detail-pagination">
 					<Pagination defaultCurrent={1} total={170} className="pagination-list" />
 				</div>
 			</div>

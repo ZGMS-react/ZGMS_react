@@ -26,13 +26,7 @@ const routes = [
     path:'/order',
     exact:true,
     component:Order
-  },
-  {
-    path:'/',
-    redirect: '/home'
   }
-
-
 ];
 
 export default routes;
