@@ -16,6 +16,8 @@ const routes = [
     path: '/detaillist',
     exact: true,
     component: DetailList
+  },{
+    
   }
 
 
