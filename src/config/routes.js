@@ -14,7 +14,10 @@ const routes = [{
   },{
     path:'/order',
     exact:true,
-    component:Order
+    component:Order},
+    {
+    path:'/',
+    redirect: '/home'
   }
 
 
