@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
 import { Spin } from 'antd';
 import NotMatch from '@comps/not-match';
 import routes from './config/routes';
@@ -19,6 +19,7 @@ class App extends Component {
                 })
               }
               {/* 不写path 就是匹配所有路径 */}
+              <Redirect to="/home"/>
               <Route component={NotMatch}/>
             </Switch>
        

@@ -1,3 +1,4 @@
+import MsDetail from "../containers/msdetil";
 import Home from '../containers/home';
 import Login from '@conts/login';
 import DetailList from '@conts/DetailList';
@@ -18,15 +19,14 @@ const routes = [
     exact: true,
     component: DetailList
   },{
+    path:'/msdetail',
+    exact:true,
+    component:MsDetail
+  },{
     path:'/order',
     exact:true,
-    component:Order},
-    {
-    path:'/',
-    redirect: '/home'
+    component:Order
   }
-
-
 ];
 
 export default routes;
