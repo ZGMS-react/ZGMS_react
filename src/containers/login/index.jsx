@@ -102,7 +102,7 @@ class Login extends React.Component {
                                             rules: [
                                                 /*
                                                 * 1.在getFiledDecorate方法中，有一个自定义校验规则
-                                                * 2.validator：值是一个函数，但是函不好复用，故在this上创建一个函数，不用重复创建函数，实现                                                          代码的复用
+                                                * 2.validator：值是一个函数，但是函不好复用，故在this上创建一个函数，不用重复创建函数，实现代码复用                                                          代码的复用
                                                 */
                                                 { validator: this.validator }
                                             ]
