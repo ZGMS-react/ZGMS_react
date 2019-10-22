@@ -7,12 +7,12 @@ import store from '@redux/store';
 
 // 创建axios的实例
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'http://localhost:4000',
   timeout: 5000,
   // headers: {}
 });
 
-// 设置请求拦截器：发送请求之前触发函数
+// // 设置请求拦截器：发送请求之前触发函数
 instance.interceptors.request.use(
   (config) => {
     // /api/login 不需要加上请求头参数
@@ -25,20 +25,22 @@ instance.interceptors.request.use(
 
     return config;
   },
-  /*(err) => {
+  (err) => {
     return Promise.reject(err);
-  }*/
+  }
 );
 // 设置响应拦截器：处理响应之前触发函数
 instance.interceptors.response.use(
   (response) => {
     // 请求成功
     // result就是响应体数据
+    console.log(response);
     const result = response.data;
+    console.log(result)
 
     if (result.status === 0) {
       // 功能成功 --> 后面触发then
-      return result.data;
+      return result;
     } else {
       // 功能失败 --> 后面触发catch
       // 错误提示

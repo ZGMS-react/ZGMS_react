@@ -1,0 +1,137 @@
+{
+	"detailList": {
+		"status": 0,
+		"detailList": [{
+			"id": "0",
+			"title": "通州北关  新光大中心 同类型多套房源",
+			"landlordAvatar": "https://img.meituan.net/avatar/05ac70a3406ee1976a8d26085b7ae185123428.jpg",
+			"img": "https://p0.meituan.net/iphoenix/1903bcad6463e85450fcafcccd1092f43328913.jpg",
+			"newPrice": "288",
+			"city": "通州区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "1",
+			"title": "【漫步TIME】首都机场附近LOFT三居室单间",
+			"landlordAvatar": "https://img.meituan.net/avatar/4527763c56b04c998aa406ba2e73a09711838.jpg",
+			"img": "https://p0.meituan.net/iphoenix/4866959b8931a76385146d82bf73b8275572638.jpg",
+			"newPrice": "184",
+			"city": "顺义区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "2",
+			"title": "精装修铁艺风格，舒适家庭房，临近地铁站",
+			"landlordAvatar": "https://img.meituan.net/avatar/363f432067fd0c35baa1babb1d05282118242.jpg",
+			"img": "https://p0.meituan.net/iphoenix/5b290c00d307564f02f0978080100478153013.jpg",
+			"newPrice": "158",
+			"city": "房山区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "3",
+			"title": "免费接机 紧邻首都机场〈仅4公里〉新国展〈公交直达〉大床房  标间 交通便利 环境优美 整洁舒适",
+			"landlordAvatar": "https://img.meituan.net/avatar/060ab0c8135748a2a5edec1e42384ff7195370.jpg",
+			"img": "https://img.meituan.net/phoenix/2051de59fa83f8262729a10608b3c1c3533689.jpg",
+			"newPrice": "158",
+			"city": "房山区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "4",
+			"title": "临近国贸双井、欢乐谷百子湾站复式Loft可短租、月租、长租",
+			"landlordAvatar": "https://img.meituan.net/avatar/2534fc0b081bdf501eb072f80b86326b135701.jpg",
+			"img": "https://img.meituan.net/phoenix/1b7b4974a361b139d70f46f558356dbd1393962.jpg",
+			"newPrice": "299",
+			"city": "朝阳区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "5",
+			"title": "亦庄马驹桥，同仁医院，京东总部，同济南路地铁站 豪华一居1",
+			"landlordAvatar": "https://img.meituan.net/avatar/0bf5b897fdfb948a71219ceb9367263c21509.jpg",
+			"img": "https://img.meituan.net/phoenix/0bf21b707bc1ae539eb74e35716f45251152328.jpg",
+			"newPrice": "220",
+			"city": "通州区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "6",
+			"title": "(可长租)近国贸中央电视台大望路万达广场天安门三里屯双人大床房",
+			"landlordAvatar": "https://img.meituan.net/phoenix/baac8c7763569cd7c87c7367b41acf482358633.jpg",
+			"img": "https://img.meituan.net/phoenix/baac8c7763569cd7c87c7367b41acf482358633.jpg",
+			"newPrice": "240",
+			"city": "朝阳区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "7",
+			"title": "机场周边，金地未未来，一居室，出行方便，可做饭，居家风情屋，商务旅行",
+			"landlordAvatar": "https://img.meituan.net/avatar/dfe035f29009acc1e95443927996c6289571.jpg",
+			"img": "https://p0.meituan.net/iphoenix/07aa9e4953aacdf0e1047f2e241d9155172395.jpg",
+			"newPrice": "288",
+			"city": "顺义区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}, {
+			"id": "8",
+			"title": "长城别苑 双人房  安静舒适 环境优美",
+			"landlordAvatar": "https://img.meituan.net/avatar/dfe035f29009acc1e95443927996c6289571.jpg",
+			"img": "https://img.meituan.net/phoenix/7d61b44ef0ffb7045e690797cfa6200d1394001.jpg",
+			"newPrice": "288",
+			"city": "顺义区",
+			"score": "5.0",
+			"maxPersonNum": "2",
+			"label": [1, 2, 2, 3],
+			"houseType": "",
+			"collectNum": "123"
+		}]
+	},
+	"home01":{
+		"status":0,
+		"home":[
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{}
+		]
+	},
+	"users": [
+    {
+      "id": 100,
+      "username": "admin",
+      "phone": "18842606347",
+      "password": "123456",
+      "email": "w18842606347@163.com"
+    }
+  ]
+}
