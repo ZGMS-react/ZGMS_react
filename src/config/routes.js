@@ -11,8 +11,8 @@ const routes = [
     component: Login //组件
   },
   {
-    path:'/home',
-    component:Home
+    path: '/home',
+    component: Home
   },
   {
     path: '/detaillist',
