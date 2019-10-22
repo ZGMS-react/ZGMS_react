@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {homeList}from '../../redux/action-creators'
+import { homeList } from '../../redux/action-creators'
 import { spliceHomeList } from '../../utils/cuttingArr.js'
 
 import MyHeader from '../../components/header'
@@ -18,8 +18,8 @@ import { reqHome, reqDetailList } from '../../api';
 // import { connect } from 'tls';
 const { Header, Footer, Content } = Layout;
 @connect(
-  (state)=>({arrHomeList:state.arrHomeList}),
-  {homeList}
+  (state) => ({ arrHomeList: state.arrHomeList }),
+  { homeList }
 )
 class Home extends Component {
   state = {
@@ -34,7 +34,7 @@ class Home extends Component {
   }
 
   handleCity = (index) => {
-    
+
     let listData = []
     return async () => {
       // 判断点击的是哪个城市，发送对应的请求，获取对应的数据数组
@@ -48,8 +48,8 @@ class Home extends Component {
         // console.log(listData)
       }
       // this.setState({arrHomeList:this.listData})
-     
-       this.props.homeList(listData)
+
+      this.props.homeList(listData)
     }
   }
 
@@ -69,40 +69,39 @@ class Home extends Component {
             <Row type="flex" justify="center" className="city_list">
               <Col span={6} ></Col>
               <Col span={2} className="city_name" ref={this.cityRef} onClick={this.handleCity(1)}>
-                <Link className="active">
+                <a href="jiavascript:;" className="active">
                   <span>上海</span>
-                  {/* /home */}
-                </Link>
+                </a>
               </Col>
               <Col span={2} className="city_name" onClick={this.handleCity(2)}>
-                <Link>
+                <a href="jiavascript:;">
                   <span>北京</span>
                   {/* /detaillist */}
-                </Link>
+                </a>
 
               </Col>
               <Col span={2} className="city_name" onClick={this.handleCity(1)}>
-                <Link>
+                <a href="jiavascript:;">
                   <span>成都</span>
-                </Link>
+                </a>
 
               </Col>
               <Col span={2} className="city_name" onClick={this.handleCity(2)}>
-                <Link>
+                <a href="jiavascript:;">
                   <span>广州</span>
-                </Link>
+                </a>
 
               </Col>
               <Col span={2} className="city_name" onClick={this.handleCity(1)}>
-                <Link>
+                <a href="jiavascript:;">
                   <span>杭州</span>
-                </Link>
+                </a>
 
               </Col>
               <Col span={2} className="city_name" onClick={this.handleCity(2)}>
-                <Link>
+                <a href="jiavascript:;">
                   <span>深圳</span>
-                </Link>
+                </a>
 
               </Col>
               <Col span={6}></Col>
