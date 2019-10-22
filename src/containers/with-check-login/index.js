@@ -28,6 +28,8 @@ export default function withCheckLogin(WrappedComponent) {
 
                 if (pathname==='/login'&&token) return <Redirect to="/"/>;
                 if (pathname!=='/login'&&!token) return <Redirect to="/login"/>;
+                // if (token == null) return <Redirect to="/detaillist"/>;
+
 
 
                 //Login组件已经没有路由的三大属性了，故需要通过新组建传递过去
