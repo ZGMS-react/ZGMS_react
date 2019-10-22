@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.less'
-import bgc from './1.jpg'
+// import bgc from './1.jpg'
 import bg from './2.png'
 import MDHeader from '../../components/header'
 import { Pagination, Icon, DatePicker } from 'antd'
@@ -57,7 +57,8 @@ export default class MsDetail extends Component {
   };
 
   componentDidMount() {
-
+    console.log(11111111)
+   
     const fixedTop = document.getElementById('fixed-menu').offsetTop;
     window.onscroll = () => {
       let scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop)
@@ -68,10 +69,28 @@ export default class MsDetail extends Component {
         this.setState({ needFixed: false })
       }
     }
+
+   
   }
 
 
   render() {
+
+    const {item}=this.props.location.state
+    // console.log(this.props)
+    let canLog = true
+    window.onscroll = function () {
+      if(canLog){
+        // console.log(1)
+        console.log(item)
+        canLog = false
+        setTimeout(()=>{
+          canLog = true
+        },2000)
+      }
+    }
+   
+
     const { startValue, endValue, endOpen } = this.state;
     function onShowSizeChange(current, pageSize) {
       console.log(current, pageSize);
@@ -83,7 +102,7 @@ export default class MsDetail extends Component {
         </div>
         <div className="box">
           <div className="image">
-            <img src={bgc} alt="" />
+            <img src={item.img} alt="" />
           </div>
         </div>
         <div className="content_wrap">
@@ -94,9 +113,9 @@ export default class MsDetail extends Component {
                   <div className="hrefto">
                     <a href="/shanghai/">上海民宿 </a>
                     <span>></span>
-                    <a href="/shanghai/a34399/"> 上海南外滩附近民宿</a>
+                    <a href="/shanghai/a34399/"> {item.city}</a>
                   </div>
-                  <h2>限女生 市中心13/4独卫近田子坊 黄浦滨江 城隍庙 新天地 梅塞德斯奔驰馆坐拥外滩 清新风公寓电梯房 门口地铁达迪士尼</h2>
+                  <h2>{item.title}</h2>
                 </div>
                 <div className="wrap_baseInfo">
                   <span>独立单间</span>
@@ -113,7 +132,7 @@ export default class MsDetail extends Component {
                   </div>
                   <div className="communication">
                     <div className='adr'>
-                      <a className="user_address" href="/user/35328256/">上海市区美优民宿</a>
+                      <a className="user_address" href="/user/35328256/">{item.landlorName}</a>
                       <a className="user_connect" href="/chat/1418420846/">联系房东</a>
                     </div>
                     <div className="adr_information">

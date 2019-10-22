@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Layout, Row, Col } from 'antd'
 import MsCard from '../msCard'
-import MsDetail from '../../containers/msdetil'
 import './index.less'
 
 @connect(
@@ -20,7 +19,7 @@ class MsList extends Component {
             {
               intems.map((item, index) => {
                 return <Col className="gutter-row" span={8} key={index} >
-                  <Link to="/msdetail" component={MsDetail}>
+                  <Link to={{ pathname:'/msdetail', state:{ item }}} >
                     <MsCard className="msCard_box" item={item} />
                   </Link>
                 </Col>
