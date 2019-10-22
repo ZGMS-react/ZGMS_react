@@ -1,10 +1,46 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import { Row, Col, Avatar, Menu, Dropdown, message } from 'antd';
+import { Link ,withRouter} from "react-router-dom";
+import { Row, Col, Avatar, Menu, Dropdown,message } from 'antd';
+import { connect } from 'react-redux'
+import { deleteUser,changeShow } from "@redux/action-creators";
 import './index.less'
 
-export default class MyHeader extends Component {
+
+
+@connect(
+  (state) => ({ user: state.user,userName:state.userName }),
+  { deleteUser ,changeShow}
+)
+@withRouter
+class MyHeader extends Component {
+  state={
+   isUser:false
+  }
+  // componentWillMount(){
+  //   this.props.changeShow(this.state.isUser)
+  // }
+  
+  delete = (user) => {
+    
+    return ()=>{
+      // user={}
+      if(user){
+      
+          this.props.deleteUser(user)
+          this.props.changeShow(this.state.isUser)
+      }else{
+        this.props.history.push('/login')
+      }
+    }
+  };
+login=()=>{
+  
+}
+  
   render() {
+    console.log(this.props)
+    const {user,userName} =this.props
+
     const onClick = ({ key }) => {
       message.info(`Click on item ${key}`);
     };
@@ -13,7 +49,7 @@ export default class MyHeader extends Component {
       <Menu onClick={onClick}>
         <Menu.Item key="1">我的收藏</Menu.Item>
         <Menu.Item key="2">修改资料</Menu.Item>
-        <Menu.Item key="3">退出登录</Menu.Item>
+        <Menu.Item key="3" onClick={this.delete(user)}>{user?'退出登录':'登录'}</Menu.Item>
       </Menu>
     );
     return <Row className="wrap_header">
@@ -26,7 +62,7 @@ export default class MyHeader extends Component {
           <Link className="ant-dropdown-link" to="#">
             {/* <Avatar icon="user"  /> */}
             <Avatar className="user_avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            <span className="user_name">鸿蒙兔</span>
+            <span className="user_name"  onClick={this.login}>{userName?user.username:'登录'}</span>
           </Link>
         </Dropdown>
 
@@ -36,4 +72,5 @@ export default class MyHeader extends Component {
 
     </Row>
   }
-}  
+}
+export default MyHeader
