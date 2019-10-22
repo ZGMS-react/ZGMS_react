@@ -9,7 +9,8 @@ import {
     UPDATE_DETAIL_LIST,
     DELETE_USER,
     SHOW_USERNAME,
-    SAVE_HOMELIST
+    SAVE_HOMELIST,
+    SAVE_MSOBJ
   
 } from './action-types'
 import {
@@ -93,5 +94,6 @@ export default combineReducers({
     user,
     listArr,
     userName,
-    homeList
+    homeList,
+    saveMsObj
 })

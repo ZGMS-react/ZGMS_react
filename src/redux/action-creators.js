@@ -2,7 +2,7 @@
 * 包含n个生成action对象的工厂函数模块
 */
 
-import {SAVE_USER,UPDATE_DETAIL_LIST,DELETE_USER,SHOW_USERNAME,SAVE_HOMELIST} from './action-types';
+import {SAVE_USER,UPDATE_DETAIL_LIST,DELETE_USER,SHOW_USERNAME,SAVE_HOMELIST,SAVE_MSOBJ} from './action-types';
 
 //保存数据
 export const saveUser=(user)=>({

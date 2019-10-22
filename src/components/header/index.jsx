@@ -39,7 +39,7 @@ login=()=>{
 }
   
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const {user,userName} =this.props
 
     const onClick = ({ key }) => {
