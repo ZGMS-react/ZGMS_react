@@ -46,7 +46,7 @@ class Login extends React.Component {
             }
         })
         //登录成功，跳转到'/'路由（用于非render方法中进行路由的跳转）
-        this.props.history.replace('/');
+        this.props.history.replace('/home');
     }
     render() {
         // getFieldDecorator 专门表单校验的方法高阶组件

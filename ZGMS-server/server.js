@@ -11,6 +11,13 @@ let datas = require('./data.json')
 //声明使用所有的路由及路由的相关的所有的方法
 koa.use(koaRouter.routes()).use(koaRouter.allowedMethods());
 
+koaRouter.get('/detailList',(ctx)=>{
+	console.log(ctx.query);
+	if(ctx.query.id === 'detailList'){
+		return ctx.body = datas
+	}
+})
+
 koa.listen(4000,()=>{
 	console.log('服务器启动成功');
 	console.log("服务器的地址为:http://localhost:4000");
