@@ -1,13 +1,78 @@
 import React, { Component } from 'react';
 import './index.less'
 import bgc from './1.jpg'
+import bg from './2.png'
 import MDHeader from '../../components/header'
-import { Pagination, Icon } from 'antd'
+import { Pagination, Icon, DatePicker } from 'antd'
+import Star from '../../components/star';
 
 
 
 export default class MsDetail extends Component {
+  //date
+  state = {
+    startValue: null,
+    endValue: null,
+    endOpen: false,
+    needFixed: false
+  };
+  disabledStartDate = startValue => {
+    const { endValue } = this.state;
+    if (!startValue || !endValue) {
+      return false;
+    }
+    return startValue.valueOf() > endValue.valueOf();
+  };
+
+  disabledEndDate = endValue => {
+    const { startValue } = this.state;
+    if (!endValue || !startValue) {
+      return false;
+    }
+    return endValue.valueOf() <= startValue.valueOf();
+  };
+
+  onChange = (field, value) => {
+    this.setState({
+      [field]: value,
+    });
+  };
+
+  onStartChange = value => {
+    this.onChange('startValue', value);
+  };
+
+  onEndChange = value => {
+    this.onChange('endValue', value);
+  };
+
+  handleStartOpenChange = open => {
+    if (!open) {
+      this.setState({ endOpen: true });
+    }
+  };
+
+  handleEndOpenChange = open => {
+    this.setState({ endOpen: open });
+  };
+
+  componentDidMount() {
+
+    const fixedTop = document.getElementById('fixed-menu').offsetTop;
+    window.onscroll = () => {
+      let scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop)
+      //控制元素块A随鼠标滚动固定在顶部
+      if (scrollTop >= fixedTop) {
+        this.setState({ needFixed: true })
+      } else if (scrollTop < fixedTop) {
+        this.setState({ needFixed: false })
+      }
+    }
+  }
+
+
   render() {
+    const { startValue, endValue, endOpen } = this.state;
     function onShowSizeChange(current, pageSize) {
       console.log(current, pageSize);
     }
@@ -94,8 +159,32 @@ export default class MsDetail extends Component {
                 <h3>评价</h3>
                 <div className="access_content">
                   <div className="access_count">共22条评价</div>
-                  <div className="star">星星</div>
-                  <ul><li>描述准确***<span><span>4.9</span>分</span></li><li>沟通交流</li><li>卫生状况</li><li>地理位置</li></ul>
+                  <div className="star">
+                    {/* <Rate className="star_rate" allowHalf defaultValue={1} /> */}
+                    <Star star={4.8} /><span>4.8分</span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div className="star">
+                        <span>描述准确</span><Star star={4.8} /><span>4.8分</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="star">
+                        <span>沟通交流</span><Star star={4.8} /><span>4.8分</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="star">
+                        <span>卫生状况</span><Star star={4.8} /><span>4.8分</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="star">
+                        <span>地理位置</span><Star star={4.8} /><span>4.8分</span>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
                 <hr />
                 <div className="access_user">
@@ -103,7 +192,9 @@ export default class MsDetail extends Component {
                     <img src="" alt="" />
                     <div className="user_name">
                       <div className="user_name_top">Kohaly_</div>
-                      <button>xx</button>
+                      <div className="star">
+                        <Star star={4.8} />
+                      </div>
                     </div>
                   </div>
                   <p className="p2">房子靠近地鐵站，出行很方便，阿姨人也很和善～</p>
@@ -114,7 +205,9 @@ export default class MsDetail extends Component {
                     <img src="" alt="" />
                     <div className="user_name">
                       <div className="user_name_top">Kohaly_</div>
-                      <button>xx</button>
+                      <div className="star">
+                        <Star star={4.8} />
+                      </div>
                     </div>
                   </div>
                   <p className="p2">房子靠近地鐵站，出行很方便，阿姨人也很和善～</p>
@@ -125,7 +218,9 @@ export default class MsDetail extends Component {
                     <img src="" alt="" />
                     <div className="user_name">
                       <div className="user_name_top">Kohaly_</div>
-                      <button>xx</button>
+                      <div className="star">
+                        <Star star={4.8} />
+                      </div>
                     </div>
                   </div>
                   <p className="p2">房子靠近地鐵站，出行很方便，阿姨人也很和善～</p>
@@ -144,7 +239,7 @@ export default class MsDetail extends Component {
               <section className="block">
                 <h3>房源位置</h3>
                 <p className="p3">上海黄浦区蒙自路501德福苑</p>
-                <div className="map">地图</div>
+                {/* <div className="map">地图</div> */}
               </section>
               <section className="block">
                 <h3>设施服务</h3>
@@ -235,13 +330,13 @@ export default class MsDetail extends Component {
                 <h4>客人须知</h4>
                 <li className="lispecial"> <del>适合老人丶（60岁以上）丶适合婴幼儿（2岁以下）丶允许携带宠物允许聚会允许抽烟适合儿童（2-12岁）丶允许做饭</del></li>
                 <li className="lispecial_li">
-                    不接待入住期间需要看病和接受整容手术客人<br />
-                    入住时需要出示身份证<br />
-                    如需提供2条被子的请提前和我联系 <br />
-                    12点退房 14点入住 限女生入住<br />
-                    为了保证卫生 毛巾需要自己携带。 <br />
-                    请先沟通好再下单奥<br />
-                    入住一天的只适合当天空房和满房相隔间一天空房 其余时间需2天以上才能预定<br />
+                  不接待入住期间需要看病和接受整容手术客人<br />
+                  入住时需要出示身份证<br />
+                  如需提供2条被子的请提前和我联系 <br />
+                  12点退房 14点入住 限女生入住<br />
+                  为了保证卫生 毛巾需要自己携带。 <br />
+                  请先沟通好再下单奥<br />
+                  入住一天的只适合当天空房和满房相隔间一天空房 其余时间需2天以上才能预定<br />
                 </li>
               </section>
               <section className="block">
@@ -250,8 +345,70 @@ export default class MsDetail extends Component {
               </section>
             </div>
           </div>
-          <div className="content_right">
+          <div id="fixed-menu" className={`content_right ${this.state.needFixed ? 'fixed' : ''}`}>
+            <div className="react_root">
+              <header className="product_top">
+                <span className="product_price">
+                  <span className="currency">￥
+                    <span className="price">108</span>
+                    <small>/晚</small>
+                  </span>
+                </span>
+              </header>
+              <div className="booking_wrapper">
+                <div className="book_date">
+                  <div className="bookDatesCell">
+                    <div className="bookDatesCell_top">入住日期</div>
+                    <div className="bookDatesCell_bottom">
+                      <DatePicker
+                        size={"large=38"}
+                        style={{ width: 135, height: 38, minHeight: 0, minWidth: 0 }}
+                        disabledDate={this.disabledStartDate}
+                        // showTime
+                        format="YYYY-MM-DD"
+                        value={startValue}
+                        placeholder="选择日期"
+                        onChange={this.onStartChange}
+                        onOpenChange={this.handleStartOpenChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="bookDatesCell">
+                    <div className="bookDatesCell_top">退房日期</div>
+                    <div>
+                      <DatePicker
+                        style={{ width: 135, height: 38, minHeight: 0, minWidth: 0 }}
+                        disabledDate={this.disabledEndDate}
+                        // showTime
+                        format="YYYY-MM-DD"
+                        value={endValue}
+                        placeholder="选择日期"
+                        onChange={this.onEndChange}
+                        open={endOpen}
+                        onOpenChange={this.handleEndOpenChange}
+                      />
+                    </div>
+                  </div>
+                </div>
 
+                <div className="menu_label">
+                  <label>入住人数</label>
+                  <div className="jisuan">
+                    <Icon type="minus" style={{ width: 20, height: 20, fontSize: 16, fontWeight: 600, borderRadius: 10 }} />
+                    <input type="text" placeholder="1" defaultValue="1" style={{fontSize:20}}/>
+                    <Icon type="plus" style={{ width: 20, height: 20, fontSize: 16, fontWeight: 600, borderRadius: 10 }} />
+                  </div>
+                </div>
+                <p style={{ fontSize: 12, color: '#979797' }}>可住1人，不可加客</p>
+                <button className="bton" type="submit"><span>立即预定</span></button>
+                <div className="erweima">
+                  <img src={bg} alt="" />
+                  <div>
+                    <p>微信扫码9折订</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

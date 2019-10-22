@@ -2,7 +2,7 @@
 * 根据之前的PrevState和action对象生成newState（新状态）的函数
 */
 import {combineReducers} from 'redux'
-import {SAVE_USER,UPDATE_DETAIL_LIST} from './action-types'
+import {SAVE_USER,UPDATE_DETAIL_LIST,SAVE_HOMELIST} from './action-types'
 import {getItem,setItem} from '../utils/storage'
 
 /*
@@ -38,8 +38,19 @@ function listArr(prevState=[],action){
 	}
 }
 
+// 保存首页切换后的数组
+function homeList(prevState=[],action){
+    switch(action.type){
+       case SAVE_HOMELIST:
+           return action.data
+        default:
+            return prevState   
+    }
+}
+
 
 export default combineReducers({
     user,
-    listArr
+    listArr,
+    homeList
 })
