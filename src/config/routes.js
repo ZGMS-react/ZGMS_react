@@ -11,8 +11,8 @@ const routes = [
     component: Login //组件
   },
   {
-    path:'/home',
-    component:Home
+    path: '/home',
+    component: Home
   },
   {
     path: '/detaillist',
@@ -26,13 +26,7 @@ const routes = [
     path:'/order',
     exact:true,
     component:Order
-  },
-  {
-    path:'/',
-    redirect: '/home'
   }
-
-
 ];
 
 export default routes;

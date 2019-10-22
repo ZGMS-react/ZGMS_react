@@ -1,9 +1,18 @@
 import React from 'react';
-import { Form, Input, Icon, Button } from 'antd'
+import { Form, Input, Icon, Button, message } from 'antd'
 import './index.less'
 import logo from './images/login.png'
+import withCheckLogin from "@conts/with-check-login";
+import {connect} from 'react-redux'
+import {saveUser} from "@redux/action-creators";
+import { reqLogin } from '../../api';
 
+@withCheckLogin
 //调用一个高阶组件Form.create()()是为了创建form属性，用于自定义表单校验
+@connect(
+    null,
+    {saveUser}
+)
 @Form.create()
 class Login extends React.Component {
 
@@ -38,15 +47,35 @@ class Login extends React.Component {
         //阻止浏览器默认行为
         e.preventDefault();
 
+
+
         //点击登陆后再次对表单进行登录校验
-        this.props.form.validateFields((error, values
-        ) => {
+        this.props.form.validateFields(async (error, values) => {
             if (!error) {
                 console.log(values)
+                const { username, password } = values
+
+                reqLogin(username, password)
+
+                    .then((result) => {
+                        console.log(result);
+                        //登录成功
+                        message.success('登录成功');
+
+                        //保存用户数据
+                        this.props.saveUser(result.user);
+
+                        //登录成功，跳转到'/'路由（用于非render方法中进行路由的跳转）
+                        this.props.history.replace('/home');
+
+                    })
+                    .catch((error) => {
+                        //清空密码
+                        this.props.form.resetFields(['password']);
+                    })
             }
         })
-        //登录成功，跳转到'/'路由（用于非render方法中进行路由的跳转）
-        this.props.history.replace('/home');
+
     }
     render() {
         // getFieldDecorator 专门表单校验的方法高阶组件

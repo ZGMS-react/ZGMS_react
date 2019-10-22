@@ -1,3 +1,16 @@
+.clearfix{
+  zoom:1;
+  &::after{
+    display: block;
+    content: '';
+    clear: both;
+    visibility: hidden;
+    height: 0;
+  }
+}
+.ant-layout{
+  background-color: #fff;
+}
 .wrap_home{
   width: 100%;
   height: 100%;
@@ -7,4 +20,151 @@
     padding: 0;
     background-color: #fff;
   } 
+  .ant-layout-content{
+    width: 1200px;
+    padding:0 15px;
+    padding-top: 40px;
+    margin: 0 auto;
+    .hot_citys{
+      text-align: center;
+      .hot_cn{
+        height: 28px;
+        line-height: 28px;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 5px;
+        color: #333;
+
+      }
+      .hot_en{
+        font-size: 14px;
+        margin:10px 0;
+        letter-spacing: 10px;
+      }
+    }
+    .city_list{
+      height: 28px;
+      line-height: 28px;
+      .city_name{
+        font-size: 18px;
+        text-align: center;
+        color: #333;
+        border-left: 1px solid #dbdbdb;
+        &:nth-child(2){
+          border: none;          
+        }
+        a{
+          color: #333;
+        }
+        .active{   
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: #333;   
+          span{
+            font-weight: 700; 
+          }
+          span:after{
+            display: block;
+            content: '';          
+            width: 28px;
+            height: 2px;
+            margin:  0 auto;
+            margin-top:5px ;
+            background-color: #FFCF01;
+            // border-bottom: 1px solid #FFCF01;
+          }
+          
+        }
+      }
+     
+    }
+    .moreMs_btn{
+      display: block;
+      width: 180px;
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      color: #333;
+      font-size: 16px;
+      border-radius: 4px;
+      background: linear-gradient(90deg,#FFDF55,#FFCF01);
+      margin: 0 auto;
+      margin-bottom:40px ;
+      margin-top: 15px;
+    }
+  }
+  .middle_ad{
+    width: 100%;
+    height: 180px;
+    padding: 40px 0;
+    background-color: #FAFAFA;
+   
+    .ad_container{
+      width: 1200px;
+      height: 100%;
+      text-align: center;
+      margin:0 auto;
+      img{
+        width: 32px;
+        height: 32px;
+      }
+      h5{
+        font-size: 16px;
+        font-weight: 400;
+        margin: 12px 0 8px 0;
+      }
+      p{
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 9px;
+      }
+    }
+  }
+  .wrap_msStory{
+    width: 100%;
+    height: 420px;
+    padding: 40px 0;
+    background-color: #fff;
+    .story_container{
+      width: 1200px;
+      height: 100%;
+      margin: 0 auto;
+      .story_col{
+        padding: 0 9px;
+        box-sizing: border-box;
+        .story_card{
+          display: block;
+          overflow: hidden;
+          margin:0 5px;
+          color: #333;
+          p:nth-child(2){
+            height: 24px;
+            line-height: 24px;
+            font-size: 16px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+          }
+          p:nth-child(3){
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            color: #999;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis; 
+          }
+        }
+      }
+      
+    }
+  }
+  .ant-layout-footer{
+    width: 100%;
+    height: 100%;
+    // height: 234px;
+    padding: 0;
+  
+  }
 }
