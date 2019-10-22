@@ -8,7 +8,8 @@ import {
     SAVE_USER,
     UPDATE_DETAIL_LIST,
     DELETE_USER,
-    SHOW_USERNAME
+    SHOW_USERNAME,
+    SAVE_HOMELIST
   
 } from './action-types'
 import {
@@ -67,9 +68,20 @@ function listArr(prevState = [], action) {
     }
 }
 
+// 保存首页切换后的数组
+function homeList(prevState=[],action){
+    switch(action.type){
+       case SAVE_HOMELIST:
+           return action.data
+        default:
+            return prevState   
+    }
+}
+
 
 export default combineReducers({
     user,
     listArr,
-    userName
+    userName,
+    homeList
 })

@@ -20,6 +20,8 @@ export const reqGetProducts = (pageNum, pageSize) => axios.get('/product/list', 
 // 请求详情列表页
 export const reqDetailList = () => axios.get('/detailList')
 
+// 请求首页信息
+export const reqHome = () => axios.get('/home')
 
 
 

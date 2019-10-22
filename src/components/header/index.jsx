@@ -3,6 +3,7 @@ import { Link ,withRouter} from "react-router-dom";
 import { Row, Col, Avatar, Menu, Dropdown,message } from 'antd';
 import { connect } from 'react-redux'
 import { deleteUser,changeShow } from "@redux/action-creators";
+import Home from '../../containers/home'
 import './index.less'
 
 
@@ -54,12 +55,14 @@ login=()=>{
     );
     return <Row className="wrap_header">
       <Col className="logo" span={8}>
-        <img src="https://s3plus.meituan.net/v1/mss_65766da973d14523b3d781fe3ac2bbac/www-assets/shared/images/logo/h-full-va3ab1f94.svg" alt="" />
+        <Link to="/home" component={Home}>
+          <img src="https://s3plus.meituan.net/v1/mss_65766da973d14523b3d781fe3ac2bbac/www-assets/shared/images/logo/h-full-va3ab1f94.svg" alt="" />
+        </Link>
       </Col>
 
       <Col span={4} offset={12}>
         <Dropdown overlay={menu}>
-          <Link className="ant-dropdown-link" to="#">
+          <Link className="ant-dropdown-link" >
             {/* <Avatar icon="user"  /> */}
             <Avatar className="user_avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             <span className="user_name"  onClick={this.login}>{userName?user.username:'登录'}</span>

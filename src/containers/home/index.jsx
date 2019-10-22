@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { homeList } from '../../redux/action-creators'
+import { spliceHomeList } from '../../utils/cuttingArr.js'
+
 import MyHeader from '../../components/header'
 import MySwiper from '../../components/swiper'
 import MyFooter from '../../components/footer'
-
 import MsList from '../../components/msList'
 import DetailList from '../DetailList'
 
@@ -10,9 +13,46 @@ import './index.less'
 
 import { NavLink, Route, Link } from "react-router-dom";
 import { Layout, Row, Col, } from 'antd';
-const { Header, Footer, Content } = Layout;
+import { reqHome, reqDetailList } from '../../api';
 
-export default class Home extends Component {
+// import { connect } from 'tls';
+const { Header, Footer, Content } = Layout;
+@connect(
+  (state) => ({ arrHomeList: state.arrHomeList }),
+  { homeList }
+)
+class Home extends Component {
+  state = {
+    arrHomeList: []
+  }
+
+  async componentDidMount() {
+    let listData = []
+    let homeDate = await reqHome()
+    listData = spliceHomeList(homeDate.home)
+    this.props.homeList(listData)
+  }
+
+  handleCity = (index) => {
+
+    let listData = []
+    return async () => {
+      // 判断点击的是哪个城市，发送对应的请求，获取对应的数据数组
+      if (index === 1) {
+        let homeDate = await reqHome()
+        listData = spliceHomeList(homeDate.home)
+        // console.log(listData) // 大数组
+      } else {
+        let detailList = await reqDetailList()
+        listData = spliceHomeList(detailList.detailList)
+        // console.log(listData)
+      }
+      // this.setState({arrHomeList:this.listData})
+
+      this.props.homeList(listData)
+    }
+  }
+
   render() {
     return (<div className="wrap_home">
       <Layout>
@@ -28,52 +68,46 @@ export default class Home extends Component {
           <Layout>
             <Row type="flex" justify="center" className="city_list">
               <Col span={6} ></Col>
-              <Col span={2} className="city_name">
-                <Link className="active">
+              <Col span={2} className="city_name" ref={this.cityRef} onClick={this.handleCity(1)}>
+                <a href="jiavascript:;" className="active">
                   <span>上海</span>
-                </Link>
-
+                </a>
               </Col>
-              <Col span={2} className="city_name">
-                <Link>
+              <Col span={2} className="city_name" onClick={this.handleCity(2)}>
+                <a href="jiavascript:;">
                   <span>北京</span>
-                </Link>
+                  {/* /detaillist */}
+                </a>
 
               </Col>
-              <Col span={2} className="city_name">
-                <Link>
+              <Col span={2} className="city_name" onClick={this.handleCity(1)}>
+                <a href="jiavascript:;">
                   <span>成都</span>
-                </Link>
+                </a>
 
               </Col>
-              <Col span={2} className="city_name">
-                <Link>
+              <Col span={2} className="city_name" onClick={this.handleCity(2)}>
+                <a href="jiavascript:;">
                   <span>广州</span>
-                </Link>
+                </a>
 
               </Col>
-              <Col span={2} className="city_name">
-                <Link>
+              <Col span={2} className="city_name" onClick={this.handleCity(1)}>
+                <a href="jiavascript:;">
                   <span>杭州</span>
-                </Link>
+                </a>
 
               </Col>
-              <Col span={2} className="city_name">
-                <Link>
+              <Col span={2} className="city_name" onClick={this.handleCity(2)}>
+                <a href="jiavascript:;">
                   <span>深圳</span>
-                </Link>
+                </a>
 
               </Col>
               <Col span={6}></Col>
-
             </Row>
           </Layout>
-          {/* <ul className="citys_link clearfix">
-            
-            <li className="city_name">杭州</li>
-            <li className="city_name">深圳</li>
-          </ul> */}
-
+          {/* 判断 /home /detaillist */}
           <MsList />
           <NavLink className="moreMs_btn" to="/DetailList" >
             查看更多民宿
@@ -146,3 +180,5 @@ export default class Home extends Component {
 
   }
 }
+
+export default Home;

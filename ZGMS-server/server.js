@@ -33,9 +33,16 @@ koa.use(async (ctx, next) => {
   await next()
 })
 
+// 详情列表页数据
 koaRouter.get('/detailList',(ctx)=>{
 	console.log(ctx.query)
 	return ctx.body = datas.detailList
+})
+
+// 首页数据
+koaRouter.get('/home',(ctx)=>{
+	console.log(ctx.query)
+	return ctx.body = datas.home01
 })
 
 // 登录
