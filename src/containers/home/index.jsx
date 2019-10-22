@@ -10,9 +10,15 @@ import './index.less'
 
 import { NavLink, Route, Link } from "react-router-dom";
 import { Layout, Row, Col, } from 'antd';
+import { reqHome } from '../../api';
 const { Header, Footer, Content } = Layout;
 
 export default class Home extends Component {
+  async componentDidMount(){
+    let result = await reqHome()
+    console.log(result.home)
+    console.log(this)
+  }
   render() {
     return (<div className="wrap_home">
       <Layout>
@@ -31,12 +37,14 @@ export default class Home extends Component {
               <Col span={2} className="city_name">
                 <Link className="active">
                   <span>上海</span>
+                  {/* /home */}
                 </Link>
 
               </Col>
               <Col span={2} className="city_name">
                 <Link>
                   <span>北京</span>
+                  {/* /detaillist */}
                 </Link>
 
               </Col>
@@ -73,7 +81,7 @@ export default class Home extends Component {
             <li className="city_name">杭州</li>
             <li className="city_name">深圳</li>
           </ul> */}
-
+          {/* 判断 /home /detaillist */}
           <MsList />
           <NavLink className="moreMs_btn" to="/DetailList" >
             查看更多民宿
