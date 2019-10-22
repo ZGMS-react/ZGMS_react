@@ -56,7 +56,7 @@ class DetailList extends Component {
 		const {listArr} = this.state
 		return ()=>{
 			this.props.updatedetaillist(listArr[index])
-			// this.props.history.replace('/msdetail')
+			this.props.history.replace('/msdetail')
 		}
 	}
 
