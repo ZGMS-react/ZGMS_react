@@ -12,7 +12,7 @@ import './index.less'
 class MsList extends Component {
   render() {
     const { arrHomeList } = this.props
-    console.log(arrHomeList)
+    // console.log(arrHomeList)
     return <Layout className="wrap_msList clearfix">
       {
         arrHomeList.map((intems, index) => {
@@ -20,7 +20,7 @@ class MsList extends Component {
             {
               intems.map((item, index) => {
                 return <Col className="gutter-row" span={8} key={index} >
-                  <Link to="/msdetail" component={MsDetail}>
+                  <Link to="/msdetail" >
                     <MsCard className="msCard_box" item={item} />
                   </Link>
                 </Col>

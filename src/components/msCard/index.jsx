@@ -10,9 +10,9 @@ class MsList extends Component {
 
   render() {
     const { item } = this.props
-    console.log(item)
-    const { labels } = item.label
-    console.log(labels)
+    // console.log(item)
+    // const { labels } = item.label
+    // console.log(labels)
 
 
     return <div className="wrap_Card">

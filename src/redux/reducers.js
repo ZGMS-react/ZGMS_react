@@ -2,7 +2,7 @@
 * 根据之前的PrevState和action对象生成newState（新状态）的函数
 */
 import {combineReducers} from 'redux'
-import {SAVE_USER,UPDATE_DETAIL_LIST,SAVE_HOMELIST} from './action-types'
+import {SAVE_USER,UPDATE_DETAIL_LIST,SAVE_HOMELIST,SAVE_MSOBJ} from './action-types'
 import {getItem,setItem} from '../utils/storage'
 
 /*
@@ -48,9 +48,20 @@ function homeList(prevState=[],action){
     }
 }
 
+// 保存点击的民宿对象----sendDataTo-->MSDetail
+function saveMsObj(prevState={},action){
+    switch(action.type){
+        case SAVE_MSOBJ:
+            return action.data
+        default:
+            return prevState
+    }
+}
+
 
 export default combineReducers({
     user,
     listArr,
-    homeList
+    homeList,
+    saveMsObj
 })
