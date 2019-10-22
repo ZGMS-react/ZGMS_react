@@ -47,7 +47,7 @@ koaRouter.post("/loginWithPassword", async (ctx) => {
     const user = datas.users.find(user => user.username === data.username);
     if (user && user.password === data.password) {
       user.token = "this is token";
-      result = { status:0, code: 0, user };
+      result = { status:0, user };
     }
   }
   if (!result) {

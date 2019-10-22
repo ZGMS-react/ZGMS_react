@@ -111,9 +111,10 @@
 			"collectNum": "123"
 		}]
 	},
-	"home": {
-		"status": 0,
-		"home": [{},
+	"home01":{
+		"status":0,
+		"home":[
+			{},
 			{},
 			{},
 			{},
@@ -124,11 +125,13 @@
 			{}
 		]
 	},
-	"users": [{
-		"id": 1,
-		"username": "admin",
-		"phone": "18842606347",
-		"password": "123456",
-		"email": "w18842606347@163.com"
-	}]
+	"users": [
+    {
+      "id": 100,
+      "username": "admin",
+      "phone": "18842606347",
+      "password": "123456",
+      "email": "w18842606347@163.com"
+    }
+  ]
 }
