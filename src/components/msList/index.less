@@ -1,0 +1,30 @@
+.clearfix{
+  zoom:1;
+  &::after{
+    display: block;
+    content: '';
+    clear: both;
+    visibility: hidden;
+    height: 0;
+  }
+}
+.wrap_msList{
+  width: 100%;
+  height: 100%;
+  background-color: blue;
+  margin: 0 auto;
+  margin-top:20px ;
+  .ant-row {
+    margin: 0;
+  }
+  .ant-row > div {
+    background: transparent;
+    border: 0;
+  }
+  .msCard_box{
+    background: #00a0e9;
+    padding: 5px 0;
+  }
+  
+}
+
