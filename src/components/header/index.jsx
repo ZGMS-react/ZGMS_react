@@ -50,7 +50,7 @@ login=()=>{
       <Menu onClick={onClick}>
         <Menu.Item key="1">我的收藏</Menu.Item>
         <Menu.Item key="2">修改资料</Menu.Item>
-        <Menu.Item key="3" onClick={this.delete(user)}>{user?'退出登录':'登录'}</Menu.Item>
+        <Menu.Item key="3" onClick={this.delete(user)}>{userName?'退出登录':'登录'}</Menu.Item>
       </Menu>
     );
     return <Row className="wrap_header">
