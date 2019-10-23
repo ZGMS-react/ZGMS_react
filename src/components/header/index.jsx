@@ -18,14 +18,6 @@ class MyHeader extends Component {
   state={
    isUser:false
   }
-<<<<<<< HEAD
-  
-  delete = (user) => {
-    return ()=>{
-      // user={}
-      if(user){
-          this.props.deleteUser(user)
-=======
  
   
   delete = (userName,user) => {
@@ -35,7 +27,6 @@ class MyHeader extends Component {
       if(userName){
         // console.log(1)
         // console.log(userName)
->>>>>>> 8e453f28969636d5186872216a0a2c63cf88d866
           this.props.changeShow(this.state.isUser)
           this.props.deleteUser(user)
       }else{
