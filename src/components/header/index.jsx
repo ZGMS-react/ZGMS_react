@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { deleteUser,changeShow } from "@redux/action-creators";
 import Home from '../../containers/home'
 import './index.less'
+import { getItem } from '../../utils/storage';
 
 
 
@@ -17,19 +18,19 @@ class MyHeader extends Component {
   state={
    isUser:false
   }
-  // componentWillMount(){
-  //   this.props.changeShow(this.state.isUser)
-  // }
+ 
   
-  delete = (user) => {
+  delete = (userName,user) => {
     
     return ()=>{
       // user={}
-      if(user){
-      
-          this.props.deleteUser(user)
+      if(userName){
+        console.log(1)
+        console.log(userName)
           this.props.changeShow(this.state.isUser)
+          this.props.deleteUser(user)
       }else{
+        console.log('1111')
         this.props.history.push('/login')
       }
     }
@@ -39,18 +40,17 @@ login=()=>{
 }
   
   render() {
-    // console.log(this.props)
-    const {user,userName} =this.props
 
-    const onClick = ({ key }) => {
-      message.info(`Click on item ${key}`);
-    };
+    const {userName} =this.props
+    let user = getItem('user')
+     console.log(user)
+  
 
     const menu = (
-      <Menu onClick={onClick}>
+      <Menu>
         <Menu.Item key="1">我的收藏</Menu.Item>
         <Menu.Item key="2">修改资料</Menu.Item>
-        <Menu.Item key="3" onClick={this.delete(user)}>{user?'退出登录':'登录'}</Menu.Item>
+        <Menu.Item key="3" onClick={this.delete(userName,user)}>{userName?'退出登录':'登录'}</Menu.Item>
       </Menu>
     );
     return <Row className="wrap_header">
