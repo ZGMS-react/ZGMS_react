@@ -43,16 +43,17 @@ function user(prevState = initUser, action) {
             //删除存储
             removeItem('user')
             removeItem('token')
-            return '';
+            return '' ;
         default:
             return prevState;
     }
 }
 
 //用户名字
-function userName(prevState =false, action){
+function userName(prevState =getItem('userName'), action){
     switch (action.type) {
         case SHOW_USERNAME:
+            setItem( 'userName',action.data)
             return action.data
         default:
             return prevState
