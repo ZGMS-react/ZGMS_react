@@ -64,6 +64,7 @@ function userName(prevState =getItem('userName'), action){
 function listArr(prevState = [], action) {
     switch (action.type) {
         case UPDATE_DETAIL_LIST:
+            setItem( 'listArr',action.data)
             return action.data
         default:
             return prevState

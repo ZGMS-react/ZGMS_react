@@ -25,12 +25,12 @@ class MyHeader extends Component {
     return ()=>{
       // user={}
       if(userName){
-        console.log(1)
-        console.log(userName)
+        // console.log(1)
+        // console.log(userName)
           this.props.changeShow(this.state.isUser)
           this.props.deleteUser(user)
       }else{
-        console.log('1111')
+        // console.log('1111')
         this.props.history.push('/login')
       }
     }
@@ -43,7 +43,7 @@ login=()=>{
 
     const {userName} =this.props
     let user = getItem('user')
-     console.log(user)
+    //  console.log(user)
   
 
     const menu = (

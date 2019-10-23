@@ -7,6 +7,7 @@ import Star from '../../components/star';
 import { connect } from 'react-redux'
 import { reqComment } from '../../api';
 import { updatedetaillist } from '../../redux/action-creators';
+import { getItem } from '../../utils/storage';
 
 @connect(
   (state) => ({ item: state.listArr }),
@@ -96,12 +97,13 @@ class MsDetail extends Component {
     const {item}=this.props
     const { number } = this.state
     this.props.item.checkinNumber=number
-    console.log(this.props.item)
+    // console.log(this.props.item)
     this.props.updatedetaillist(item)
+    this.props.history.replace('/order')
   }
 
   async componentDidMount() {
-    console.log(11111111)
+    // console.log(11111111)
     let commentArr = await reqComment()
     // console.log(commentArr)
     this.setState({
@@ -126,15 +128,16 @@ class MsDetail extends Component {
 
 
   render() {
-    const { item } = this.props
+    // const { item } = this.props
+    const item = getItem("listArr")
 
     const { commArr, number } = this.state
-    console.log(commArr)
+    // console.log(commArr)
     let canLog = true
     window.onscroll = function () {
       if (canLog) {
         // console.log(1)
-        console.log(item)
+        // console.log(item)
         canLog = false
         setTimeout(() => {
           canLog = true
@@ -144,7 +147,7 @@ class MsDetail extends Component {
     // const {commentArr}=this.props
     const { startValue, endValue, endOpen } = this.state;
     function onShowSizeChange(current, pageSize) {
-      console.log(current, pageSize);
+      // console.log(current, pageSize);
     }
     return (
       <div className="wrap_msdetail">
@@ -259,8 +262,8 @@ class MsDetail extends Component {
                 <hr />
 
                 {
-                  commArr.map((comm) => {
-                    return <div className="access_user">
+                  commArr.map((comm ,index) => {
+                    return <div className="access_user" key={index}>
                       <div className="access_top">
                         <img src={comm.commentAvatar} alt="" />
                         <div className="user_name">
