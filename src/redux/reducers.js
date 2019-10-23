@@ -43,16 +43,17 @@ function user(prevState = initUser, action) {
             //删除存储
             removeItem('user')
             removeItem('token')
-            return null;
+            return '' ;
         default:
             return prevState;
     }
 }
 
 //用户名字
-function userName(prevState =false, action){
+function userName(prevState =getItem('userName'), action){
     switch (action.type) {
         case SHOW_USERNAME:
+            setItem( 'userName',action.data)
             return action.data
         default:
             return prevState
@@ -63,6 +64,7 @@ function userName(prevState =false, action){
 function listArr(prevState = [], action) {
     switch (action.type) {
         case UPDATE_DETAIL_LIST:
+            setItem( 'listArr',action.data)
             return action.data
         default:
             return prevState

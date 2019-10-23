@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import './index.less'
-import bgc from './1.jpg'
 import bg from './2.png'
 import MDHeader from '../../components/header'
 import { Pagination, Icon, DatePicker } from 'antd'
 import Star from '../../components/star';
+import { connect } from 'react-redux'
+import { reqComment } from '../../api';
+import { updatedetaillist } from '../../redux/action-creators';
+import { getItem } from '../../utils/storage';
 
-
-
-export default class MsDetail extends Component {
+@connect(
+  (state) => ({ item: state.listArr }),
+  {updatedetaillist}
+)
+class MsDetail extends Component {
   //date
   state = {
     startValue: null,
     endValue: null,
     endOpen: false,
-    needFixed: false
+    needFixed: false,
+    commArr: [],
+    number: 1
   };
   disabledStartDate = startValue => {
     const { endValue } = this.state;
@@ -40,10 +47,17 @@ export default class MsDetail extends Component {
 
   onStartChange = value => {
     this.onChange('startValue', value);
+    const startDate = JSON.stringify(value._d).slice(1, 11)
+
+    this.props.item.startDate = startDate
+    // console.log(this.props.item)
   };
 
   onEndChange = value => {
     this.onChange('endValue', value);
+    const endDate = JSON.stringify(value._d).slice(1, 11)
+    this.props.item.endDate = endDate
+    // console.log(endDate)
   };
 
   handleStartOpenChange = open => {
@@ -55,12 +69,52 @@ export default class MsDetail extends Component {
   handleEndOpenChange = open => {
     this.setState({ endOpen: open });
   };
+  // //监听input
+  // handleChange = (e) => {
+  //   this.setState({
+  //     value: +e.target.value
+  //   })
+  // }
+  reduce = () => {
+    const { number } = this.state
+    if (number > 1) {
+      this.setState({
+        number: number - 1
+      })
+    }
+  }
+  add = () => {
+    const { number } = this.state
+    const { item } = this.props
+    if (number < item.maxPersonNum) {
+      this.setState({
+        number: number + 1
+      })
+    }
+  }
 
-  componentDidMount() {
+  handleGoTo=()=>{
+    const {item}=this.props
+    const { number } = this.state
+    this.props.item.checkinNumber=number
+    // console.log(this.props.item)
+    this.props.updatedetaillist(item)
+    this.props.history.replace('/order')
+  }
+
+  async componentDidMount() {
+    // console.log(11111111)
+    let commentArr = await reqComment()
+    // console.log(commentArr)
+    this.setState({
+      commArr: commentArr.comment
+    })
 
     const fixedTop = document.getElementById('fixed-menu').offsetTop;
-    window.onscroll = () => {
+    document.onscroll = () => {
       let scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop)
+      // let scrollTop =document.documentElement.scrollTop
+
       //控制元素块A随鼠标滚动固定在顶部
       if (scrollTop >= fixedTop) {
         this.setState({ needFixed: true })
@@ -68,13 +122,32 @@ export default class MsDetail extends Component {
         this.setState({ needFixed: false })
       }
     }
+
+
   }
 
 
   render() {
+    // const { item } = this.props
+    const item = getItem("listArr")
+
+    const { commArr, number } = this.state
+    // console.log(commArr)
+    let canLog = true
+    window.onscroll = function () {
+      if (canLog) {
+        // console.log(1)
+        // console.log(item)
+        canLog = false
+        setTimeout(() => {
+          canLog = true
+        }, 2000)
+      }
+    }
+    // const {commentArr}=this.props
     const { startValue, endValue, endOpen } = this.state;
     function onShowSizeChange(current, pageSize) {
-      console.log(current, pageSize);
+      // console.log(current, pageSize);
     }
     return (
       <div className="wrap_msdetail">
@@ -83,7 +156,7 @@ export default class MsDetail extends Component {
         </div>
         <div className="box">
           <div className="image">
-            <img src={bgc} alt="" />
+            <img src={item.img} alt="" />
           </div>
         </div>
         <div className="content_wrap">
@@ -92,28 +165,28 @@ export default class MsDetail extends Component {
               <section className="block">
                 <div className="wrap_address">
                   <div className="hrefto">
-                    <a href="/shanghai/">上海民宿 </a>
+                    <a href="/shanghai/">民宿 </a>
                     <span>></span>
-                    <a href="/shanghai/a34399/"> 上海南外滩附近民宿</a>
+                    <a href="/shanghai/a34399/"> {item.city}</a>
                   </div>
-                  <h2>限女生 市中心13/4独卫近田子坊 黄浦滨江 城隍庙 新天地 梅塞德斯奔驰馆坐拥外滩 清新风公寓电梯房 门口地铁达迪士尼</h2>
+                  <h2>{item.title}</h2>
                 </div>
                 <div className="wrap_baseInfo">
                   <span>独立单间</span>
                   <span>独卫</span>
                   <span>12平</span>
-                  <span>可住2人</span>
+                  <span>可住{item.maxPersonNum}人</span>
                 </div>
               </section>
               <section className="block">
                 <h3>房东信息</h3>
                 <div className="information">
                   <div className="head_sculpture">
-                    <img src="" alt="" />
+                    <img src={item.landlordAvatar} alt="" />
                   </div>
                   <div className="communication">
                     <div className='adr'>
-                      <a className="user_address" href="/user/35328256/">上海市区美优民宿</a>
+                      <a className="user_address" href="/user/35328256/">{item.landlorName}</a>
                       <a className="user_connect" href="/chat/1418420846/">联系房东</a>
                     </div>
                     <div className="adr_information">
@@ -130,19 +203,19 @@ export default class MsDetail extends Component {
                 <ul className="evaluate">
                   <li>
                     <div>房源</div>
-                    <div>1</div>
+                    <div>{item.loadnlorHosing}</div>
                   </li>
                   <li>
                     <div>评价</div>
-                    <div>22</div>
+                    <div>{item.loadnlorComment}</div>
                   </li>
                   <li>
                     <div>咨询回复率</div>
-                    <div>100%</div>
+                    <div>{item.loadnlorReversion}</div>
                   </li>
                   <li>
                     <div>咨询回复时长</div>
-                    <div>1小时内</div>
+                    <div>{item.loadnlorReversionTime}</div>
                   </li>
                 </ul>
                 <hr />
@@ -158,10 +231,10 @@ export default class MsDetail extends Component {
               <section className="block">
                 <h3>评价</h3>
                 <div className="access_content">
-                  <div className="access_count">共22条评价</div>
+                  <div className="access_count">共{item.loadnlorComment}条评价</div>
                   <div className="star">
                     {/* <Rate className="star_rate" allowHalf defaultValue={1} /> */}
-                    <Star star={4.8} /><span>4.8分</span>
+                    <Star star={item.score} /><span>{item.score}分</span>
                   </div>
                   <ul>
                     <li>
@@ -187,7 +260,27 @@ export default class MsDetail extends Component {
                   </ul>
                 </div>
                 <hr />
-                <div className="access_user">
+
+                {
+                  commArr.map((comm ,index) => {
+                    return <div className="access_user" key={index}>
+                      <div className="access_top">
+                        <img src={comm.commentAvatar} alt="" />
+                        <div className="user_name">
+                          <div className="user_name_top">{comm.commentName}</div>
+                          <div className="star">
+                            <Star star={4.8} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="p2">{comm.comment}</p>
+                    </div>
+
+                  })
+                }
+
+                <hr />
+                {/* <div className="access_user">
                   <div className="access_top">
                     <img src="" alt="" />
                     <div className="user_name">
@@ -224,13 +317,13 @@ export default class MsDetail extends Component {
                     </div>
                   </div>
                   <p className="p2">房子靠近地鐵站，出行很方便，阿姨人也很和善～</p>
-                </div>
+                </div> */}
                 <div className="page_change">
                   <Pagination
                     // showSizeChangers
                     onShowSizeChange={onShowSizeChange}
                     defaultCurrent={1}
-                    total={22}
+                    total={item.loadnlorComment}
                     pageSize={3}
                   // pageSizeOptions={[3,5,7,9]}
                   />
@@ -238,7 +331,7 @@ export default class MsDetail extends Component {
               </section>
               <section className="block">
                 <h3>房源位置</h3>
-                <p className="p3">上海黄浦区蒙自路501德福苑</p>
+                <p className="p3">{item.houseAddress}</p>
                 {/* <div className="map">地图</div> */}
               </section>
               <section className="block">
@@ -339,10 +432,10 @@ export default class MsDetail extends Component {
                   入住一天的只适合当天空房和满房相隔间一天空房 其余时间需2天以上才能预定<br />
                 </li>
               </section>
-              <section className="block">
+              {/* <section className="block">
                 <h3>推荐房源</h3>
 
-              </section>
+              </section> */}
             </div>
           </div>
           <div id="fixed-menu" className={`content_right ${this.state.needFixed ? 'fixed' : ''}`}>
@@ -350,7 +443,7 @@ export default class MsDetail extends Component {
               <header className="product_top">
                 <span className="product_price">
                   <span className="currency">￥
-                    <span className="price">108</span>
+                    <span className="price">{item.newPrice}</span>
                     <small>/晚</small>
                   </span>
                 </span>
@@ -394,13 +487,14 @@ export default class MsDetail extends Component {
                 <div className="menu_label">
                   <label>入住人数</label>
                   <div className="jisuan">
-                    <Icon type="minus" style={{ width: 20, height: 20, fontSize: 16, fontWeight: 600, borderRadius: 10 }} />
-                    <input type="text" placeholder="1" defaultValue="1" style={{fontSize:20}}/>
-                    <Icon type="plus" style={{ width: 20, height: 20, fontSize: 16, fontWeight: 600, borderRadius: 10 }} />
+                    <Icon type="minus" onClick={this.reduce} style={{ width: 20, height: 20, fontSize: 16, fontWeight: 600, borderRadius: 10 }} />
+                    {/* <input type="text" placeholder="" Value="1" style={{ fontSize: 20 }} onChang={this.handleChange} /> */}
+                    <span>{number}</span>
+                    <Icon type="plus" onClick={this.add} style={{ width: 20, height: 20, fontSize: 16, fontWeight: 600, borderRadius: 10 }} />
                   </div>
                 </div>
-                <p style={{ fontSize: 12, color: '#979797' }}>可住1人，不可加客</p>
-                <button className="bton" type="submit"><span>立即预定</span></button>
+                <p style={{ fontSize: 12, color: '#979797' }}>可住{item.maxPersonNum}人，不可加客</p>
+                <button className="bton" type="submit" onClick={this.handleGoTo}><span>立即预定</span></button>
                 <div className="erweima">
                   <img src={bg} alt="" />
                   <div>
@@ -415,3 +509,5 @@ export default class MsDetail extends Component {
     )
   }
 }
+
+export default MsDetail

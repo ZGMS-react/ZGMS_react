@@ -39,6 +39,7 @@ class DetailList extends Component {
 		this.setState({
 			inputValue: value,
 		});
+		console.log(this.inputValue)
 	};
 
 	async componentDidMount() {

@@ -2,12 +2,12 @@ import React from 'react';
 import { Form, Input, Icon, Button, message } from 'antd'
 import './index.less'
 import logo from './images/login.png'
-// import withCheckLogin from "@conts/with-check-login";
+import withCheckLogin from "@conts/with-check-login";
 import {connect} from 'react-redux'
 import {saveUser,changeShow} from "@redux/action-creators";
 import { reqLogin } from '../../api';
 
-// @withCheckLogin
+@withCheckLogin
 //调用一个高阶组件Form.create()()是为了创建form属性，用于自定义表单校验
 @connect(
     (state)=>({userName:state.userName}),
@@ -52,7 +52,7 @@ class Login extends React.Component {
         //点击登陆后再次对表单进行登录校验
         this.props.form.validateFields(async (error, values) => {
             if (!error) {
-                console.log(values)
+                // console.log(values)
                 const { username, password } = values
 
                 reqLogin(username, password)
@@ -80,7 +80,8 @@ class Login extends React.Component {
     render() {
         // getFieldDecorator 专门表单校验的方法高阶组件
         const { getFieldDecorator } = this.props.form;
-        const {userName}=this.props
+        //  console.log(this)
+        // const {userName}=this.props
         return (
             <div className="login">
                 <section className="login_main">

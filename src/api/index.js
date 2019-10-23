@@ -23,5 +23,7 @@ export const reqDetailList = () => axios.get('/detailList')
 // 请求首页信息
 export const reqHome = () => axios.get('/home')
 
+// 请求评价数据
+export const reqComment = ()=>axios.get('/comment')
 
 
