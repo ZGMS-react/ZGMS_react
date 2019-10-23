@@ -2,12 +2,12 @@ import React from 'react';
 import { Form, Input, Icon, Button, message } from 'antd'
 import './index.less'
 import logo from './images/login.png'
-// import withCheckLogin from "@conts/with-check-login";
+import withCheckLogin from "@conts/with-check-login";
 import {connect} from 'react-redux'
 import {saveUser,changeShow} from "@redux/action-creators";
 import { reqLogin } from '../../api';
 
-// @withCheckLogin
+@withCheckLogin
 //调用一个高阶组件Form.create()()是为了创建form属性，用于自定义表单校验
 @connect(
     (state)=>({userName:state.userName}),

@@ -25,10 +25,10 @@ export default function withCheckLogin(WrappedComponent) {
               //解决高阶组件丢失children属性问题
                 const {token,...rest}=this.props;//除了token，剩余的其他属性全部打包到rest中
                 const {location:{pathname}}=rest;
-
-                if (pathname==='/login'&&token) return <Redirect to="/"/>;
-                if (pathname!=='/login'&&!token) return <Redirect to="/login"/>;
-                // if (token == null) return <Redirect to="/detaillist"/>;
+                console.log(token)
+                // if (pathname==='/login'&&token) return <Redirect to="/"/>;
+                // if (pathname!=='/login'&&!token) return <Redirect to="/login"/>;
+                // if (token == null) return <Redirect to="/login"/>;
 
 
 
