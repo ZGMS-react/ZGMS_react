@@ -27,8 +27,8 @@ class MyHeader extends Component {
       // user={}
       if(userName){
         console.log(userName)
-          this.props.deleteUser(user)
           this.props.changeShow(this.state.isUser)
+          this.props.deleteUser(user)
       }else{
         console.log('1111')
         this.props.history.push('/login')
@@ -48,7 +48,7 @@ login=()=>{
     };
 
     const menu = (
-      <Menu>
+      <Menu onClick={onClick}>
         <Menu.Item key="1">我的收藏</Menu.Item>
         <Menu.Item key="2">修改资料</Menu.Item>
         <Menu.Item key="3" onClick={this.delete(userName,user)}>{userName?'退出登录':'登录'}</Menu.Item>

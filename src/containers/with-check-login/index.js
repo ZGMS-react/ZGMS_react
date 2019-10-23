@@ -26,9 +26,9 @@ export default function withCheckLogin(WrappedComponent) {
                 const {token,...rest}=this.props;//除了token，剩余的其他属性全部打包到rest中
                 const {location:{pathname}}=rest;
                 console.log(token)
-                // if (pathname==='/login'&&token) return <Redirect to="/"/>;
-                // if (pathname!=='/login'&&!token) return <Redirect to="/login"/>;
-                // if (token == null) return <Redirect to="/login"/>;
+                if (pathname==='/login'&&token) return <Redirect to="/"/>;
+                if (pathname!=='/login'&&!token) return <Redirect to="/login"/>;
+               
 
 
 

@@ -43,7 +43,7 @@ function user(prevState = initUser, action) {
             //删除存储
             removeItem('user')
             removeItem('token')
-            return prevState;
+            return '';
         default:
             return prevState;
     }
