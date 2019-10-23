@@ -9,7 +9,8 @@ import {
     UPDATE_DETAIL_LIST,
     DELETE_USER,
     SHOW_USERNAME,
-    SAVE_HOMELIST
+    SAVE_HOMELIST,
+    SAVE_MSOBJ
   
 } from './action-types'
 import {
@@ -78,10 +79,21 @@ function homeList(prevState=[],action){
     }
 }
 
+// 保存点击的民宿对象----sendDataTo-->MSDetail
+function saveMsObj(prevState={},action){
+    switch(action.type){
+        case SAVE_MSOBJ:
+            return action.data
+        default:
+            return prevState
+    }
+}
+
 
 export default combineReducers({
     user,
     listArr,
     userName,
-    homeList
+    homeList,
+    saveMsObj
 })
