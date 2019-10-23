@@ -45,6 +45,12 @@ koaRouter.get('/home',(ctx)=>{
 	return ctx.body = datas.home01
 })
 
+// 评价数据
+koaRouter.get('/comment',(ctx)=>{
+	console.log(ctx.query)
+	return ctx.body = datas.comments
+})
+
 // 登录
 koaRouter.post("/loginWithPassword", async (ctx) => {
   const data = ctx.request.body.data;

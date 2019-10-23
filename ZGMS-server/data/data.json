@@ -368,7 +368,9 @@
       "email": "w18842606347@163.com"
     }
 	],
-	"comments":[
+	"comments":{
+	"status":0,
+	"comment":[	
 		{
 			"commentAvatar":"https://img.meituan.net/avatar/9045ea2da31818e9d57602d7d5cc762c40434.jpg",
 			"commentName":"bne921185364",
@@ -385,4 +387,5 @@
 			"comment":"挺好的，离我们去的地方也挺近，非常好"
 		}
 	]
+}
 }
