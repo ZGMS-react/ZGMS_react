@@ -1,15 +1,56 @@
 import React from 'react';
 import Header from '@comps/header'
 import './index.less'
-import {getItem} from '@utils/storage'
+import { getItem } from '@utils/storage'
 import withCheckLogin from "@conts/with-check-login";
 
 @withCheckLogin
 class Order extends React.Component {
-   
+
+    state = {
+        dayNum: 0
+    }
+
+
+    // 将日期转为时间戳
+    componentDidMount() {
+        let dataArr = getItem('listArr')
+        // if (dataArr && dataArr.startDate && dataArr.endDate) {
+        var strStart = dataArr.startDate // 入住日期字符串
+        var strStart2 = strStart.replace(/-/g, '/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
+        var dateStart = new Date(strStart2); // 构造一个日期型数据，值为传入的字符串
+        var timeStart = dateStart.getTime();
+        // console.log(timeStart)
+
+        var strEnd = dataArr.endDate // 离开日期字符串
+        var strEnd2 = strEnd.replace(/-/g, '/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
+        var dateEnd = new Date(strEnd2); // 构造一个日期型数据，值为传入的字符串
+        var timeEnd = dateEnd.getTime();
+        // console.log(timeEnd)
+        var disTime = timeEnd - timeStart
+        var dayNum = Math.floor(disTime / 86400000);
+        // console.log(dayNum)
+        this.setState({
+            dayNum
+        })
+        // }
+    }
+    
+
+
+
     render() {
-        console.log(this)
-        let dataArr=getItem('listArr')
+        // console.log(this)
+        let dataArr = getItem('listArr')
+        let { dayNum } = this.state
+        // console.log(dayNum)
+
+
+
+
+
+
+
         return (
             <div className="order">
                 <Header />
@@ -46,7 +87,7 @@ class Order extends React.Component {
                         <div className="info_price">
                             <span className="info_data">房费</span>
                             <div className="start_data">
-                                <p className="info_start_data">￥{dataArr.newPrice}</p>
+                                <p className="info_start_data">￥{Number(dataArr.newPrice) * dayNum * Number(dataArr.checkinNumber)}</p>
                             </div>
                         </div>
 
@@ -60,7 +101,7 @@ class Order extends React.Component {
                         </ul>
                     </div>
                     <div className='account'>
-                       ￥199 提交订单
+                        ￥{Number(dataArr.newPrice) * dayNum * Number(dataArr.checkinNumber)} 提交订单
                     </div>
                 </div>
             </div>

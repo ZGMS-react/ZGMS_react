@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { reqComment } from '../../api';
 import { updatedetaillist } from '../../redux/action-creators';
 import { getItem } from '../../utils/storage';
+import { createRef } from 'react';
 
 @connect(
   (state) => ({ item: state.listArr }),
@@ -23,6 +24,8 @@ class MsDetail extends Component {
     commArr: [],
     number: 1
   };
+  msDetailRef =  React.createRef()
+
   disabledStartDate = startValue => {
     const { endValue } = this.state;
     if (!startValue || !endValue) {
@@ -96,10 +99,15 @@ class MsDetail extends Component {
   handleGoTo=()=>{
     const {item}=this.props
     const { number } = this.state
+
     this.props.item.checkinNumber=number
+
     // console.log(this.props.item)
     this.props.updatedetaillist(item)
-    this.props.history.replace('/order')
+    if(this.props.item.checkinNumber&&this.props.item.endDate&& this.props.item.startDate){
+      this.props.history.replace('/order')
+    }
+    
   }
 
   async componentDidMount() {
@@ -109,19 +117,21 @@ class MsDetail extends Component {
     this.setState({
       commArr: commentArr.comment
     })
+    
+    // console.log(this.msDetailRef)
 
-    const fixedTop = document.getElementById('fixed-menu').offsetTop;
-    document.onscroll = () => {
-      let scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop)
-      // let scrollTop =document.documentElement.scrollTop
-
-      //控制元素块A随鼠标滚动固定在顶部
-      if (scrollTop >= fixedTop) {
-        this.setState({ needFixed: true })
-      } else if (scrollTop < fixedTop) {
-        this.setState({ needFixed: false })
-      }
-    }
+    // const fixedTop = document.getElementById('fixed-menu').offsetTop;
+    // this.msDetailRef.onscroll = () => {
+    //   let scrollTop = Math.max(this.msDetailRef.body.scrollTop, this.msDetailRef.documentElement.scrollTop)
+    //   // let scrollTop =document.documentElement.scrollTop
+    //   console.log('xxx')
+    //   //控制元素块A随鼠标滚动固定在顶部
+    //   if (scrollTop >= fixedTop) {
+    //     this.setState({ needFixed: true })
+    //   } else if (scrollTop < fixedTop) {
+    //     this.setState({ needFixed: false })
+    //   }
+    // }
 
 
   }
@@ -150,7 +160,7 @@ class MsDetail extends Component {
       // console.log(current, pageSize);
     }
     return (
-      <div className="wrap_msdetail">
+      <div className="wrap_msdetail" ref={this.msDetailRef}>
         <div className="header-top">
           <MDHeader />
         </div>
@@ -505,6 +515,7 @@ class MsDetail extends Component {
             </div>
           </div>
         </div>
+        
       </div>
     )
   }
