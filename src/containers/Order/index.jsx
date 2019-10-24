@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '@comps/header'
+import Footer from '../../components/footer'
 import './index.less'
 import {getItem} from '@utils/storage'
 import withCheckLogin from "@conts/with-check-login";
@@ -60,9 +61,10 @@ class Order extends React.Component {
                         </ul>
                     </div>
                     <div className='account'>
-                       ￥199 提交订单
+                       ￥{dataArr.newPrice} 提交订单
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }
