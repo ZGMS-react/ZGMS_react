@@ -1,17 +1,24 @@
 import React from 'react';
 import Header from '@comps/header'
 import './index.less'
+import {getItem} from '@utils/storage'
+import withCheckLogin from "@conts/with-check-login";
+
+@withCheckLogin
 class Order extends React.Component {
+   
     render() {
+        console.log(this)
+        let dataArr=getItem('listArr')
         return (
             <div className="order">
                 <Header />
                 <div className="order_content">
                     <div className="order_head">
-                        <img className="order_img" src="https://img.meituan.net/iphoenix/44ff8e936646da346fa3ffebaa5c18dc49997.jpg" alt="房源图片" />
+                        <img className="order_img" src={dataArr.img} alt="房源图片" />
                         <div className="order_right">
-                            <p className="order_title">上海鸿音普通大床房</p>
-                            <p className="order_author">袁飞扬发布在奉贤开发区的房源</p>
+                            <p className="order_title">{dataArr.houseType}</p>
+                            <p className="order_author">{dataArr.houseAddress}</p>
                         </div>
                     </div>
                     <div className="order_info">
@@ -19,27 +26,27 @@ class Order extends React.Component {
                         <div className="info_start">
                             <span className="info_data">入住日期</span>
                             <div className="start_data">
-                                <p className="info_start_data">10月26日</p>
+                                <p className="info_start_data">{dataArr.startDate}</p>
                                 <p className="start_data_log">14:00至不限时间</p>
                             </div>
                         </div>
                         <div className="info_end">
                             <span className="info_data">退房日期</span>
                             <div className="start_data">
-                                <p className="info_start_data">10月27日</p>
+                                <p className="info_start_data">{dataArr.endDate}</p>
                                 <p className="start_data_log">12:00前</p>
                             </div>
                         </div>
                         <div className="info_person">
                             <span className="info_data">入住人数</span>
                             <div className="start_data">
-                                <p className="info_start_data">2位客人</p>
+                                <p className="info_start_data">{dataArr.checkinNumber}位客人</p>
                             </div>
                         </div>
                         <div className="info_price">
                             <span className="info_data">房费</span>
                             <div className="start_data">
-                                <p className="info_start_data">￥199</p>
+                                <p className="info_start_data">￥{dataArr.newPrice}</p>
                             </div>
                         </div>
 
