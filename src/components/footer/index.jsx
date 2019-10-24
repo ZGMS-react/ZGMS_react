@@ -1,49 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Layout, Row, Col, } from 'antd';
-export default class MyFooter extends Component {
+import './index.less'
+class MyFooter extends Component {
   render() {
-    return <Layout>
-      <Row  className="footer_row">
-        <Col span={6}>
+    return <Layout className="myfooter">
+      <Row className="footerRow">
+        <Col span={6} className="footerCol">
           <p>公司信息</p>
-          <p>
-            <Link to="/home">关于我们</Link>
-          </p>
-          <p>
-            <Link to="/home">工作机会</Link>
+          <p>关于我们</p>
+          <p>工作机会</p>
+        </Col>
+        <Col span={6} className="footerCol">
+          <p>公司信息</p>
+          <p>服务协议</p>
+          <p>隐私协议</p>
+          <p>网站地图</p>
+          <p>民宿推荐 </p>
+        </Col>
+        <Col span={6} className="footerCol">
+          <p>公司信息</p>
+          <p className="footTel">400-6666-999</p>
+          <p>登录问题
+            <b>10107888</b>
           </p>
         </Col>
-        <Col span={6}>
-          <p>公司信息</p>
-          <p>
-            <Link to="/home">关于我们</Link>
-          </p>
-          <p>
-            <Link to="/home">关于我们</Link>
-          </p>
-          <p>
-            <Link to="/home">关于我们</Link>
-          </p>
-          <p>
-            <Link to="/home">工作机会</Link>
-          </p>
-        </Col>
-        <Col span={6}>
-          <p>公司信息</p>
-          <p>
-            <Link to="/home">400-6666-999</Link>
-          </p>
-          <p>
-            <Link to="/home">工作机会</Link>
-          </p>
-        </Col>
-        <Col span={6}>
-        <p>
-            <Link to="/home">工作机会</Link>
-          </p>
-          <p>
-            <Link to="/home">工作机会</Link>
+        <Col span={6} className="footerCol">
+          <img src="https://s3plus.meituan.net/v1/mss_65766da973d14523b3d781fe3ac2bbac/www-assets/shared/images/qrcodes/app-download-v56bda98f.svg" alt=""/>
+          <p className="downApp">
+            下载民宿App
           </p>
         </Col>
       </Row>
@@ -51,3 +36,5 @@ export default class MyFooter extends Component {
     </Layout>
   }
 }
+
+export default MyFooter
