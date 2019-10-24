@@ -10,7 +10,7 @@ import './index.less'
 // 引入图片
 // import img from './img/01.jpg'
 import { reqDetailList } from '../../api';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Header from '../../components/header'
 import { updatedetaillist } from '../../redux/action-creators';
 
@@ -18,14 +18,20 @@ const { SubMenu } = Menu;
 const { RangePicker } = DatePicker;
 
 @connect(
-	(state)=>({listArr:state.listArr}),
-	{updatedetaillist}
+	(state) => ({ listArr: state.listArr }),
+	{ updatedetaillist }
 )
 class DetailList extends Component {
 	state = {
 		current: 'mail',
 		inputValue: 1,
-		listArr:[]
+		listArr: [],
+		startValue: null,
+		endValue: null,
+		endOpen: false,
+		needFixed: false,
+		startTime:'',
+		endTime:''
 	};
 
 	handleClick = e => {
@@ -35,11 +41,58 @@ class DetailList extends Component {
 		});
 	};
 
-	onChange = value => {
+	disabledStartDate = startValue => {
+		const { endValue } = this.state;
+		if (!startValue || !endValue) {
+			return false;
+		}
+		return startValue.valueOf() > endValue.valueOf();
+	};
+
+	disabledEndDate = endValue => {
+		const { startValue } = this.state;
+		if (!endValue || !startValue) {
+			return false;
+		}
+		return endValue.valueOf() <= startValue.valueOf();
+	};
+
+	onChange = (field, value) => {
 		this.setState({
-			inputValue: value,
+			[field]: value,
 		});
-		console.log(this.inputValue)
+	};
+
+	onStartChange = value => {
+		this.onChange('startValue', value);
+		const startDate = JSON.stringify(value._d).slice(1, 11)
+		let startStr = startDate.split('-')
+		console.log(startStr)
+		this.setState({
+			startTime:startStr
+		})
+		// console.log(this.props.item)
+	};
+
+	onEndChange = value => {
+		this.onChange('endValue', value);
+		const endDate = JSON.stringify(value._d).slice(1, 11)
+		// '2019-10-04'
+		let endStr = endDate.split('-')
+		this.setState({
+			endTime:endStr
+		})
+		console.log(endStr)
+	};
+
+	handleStartOpenChange = open => {
+		if (!open) {
+			this.setState({ endOpen: true });
+		}
+	};
+
+	handleEndOpenChange = open => {
+		this.setState({ endOpen: open });
 	};
 
 	async componentDidMount() {
@@ -48,14 +101,14 @@ class DetailList extends Component {
 		console.log(this)
 		console.log(listArr)
 		this.setState({
-			listArr:listArr
+			listArr: listArr
 		})
-	
+
 	};
 
-	gotoMsDetail = (index)=>{
-		const {listArr} = this.state
-		return ()=>{
+	gotoMsDetail = (index) => {
+		const { listArr } = this.state
+		return () => {
 			this.props.updatedetaillist(listArr[index])
 			this.props.history.replace('/msdetail')
 		}
@@ -63,15 +116,16 @@ class DetailList extends Component {
 
 
 	render() {
-		function disabledDate(current) {
-			// Can not select days before today and today
-			return current && current < moment().endOf('day');
-		}
-		const { inputValue,listArr} = this.state;
- 		return (
+		// function disabledDate(current) {
+		// 	// Can not select days before today and today
+		// 	return current && current < moment().endOf('day');
+		// }
+		const { inputValue, listArr } = this.state;
+		const { startValue, endValue, endOpen,startTime,endTime } = this.state;
+		return (
 			<div>
 				<div>
-				<Header />
+					<Header />
 				</div>
 				<div className="detail-topList">
 					<div className="detail-topListUl">
@@ -83,15 +137,38 @@ class DetailList extends Component {
 							<SubMenu
 								title={
 									<span>
-										<span>10/20-10/21</span>&nbsp;
-									<span>1晚</span>
+										<span>{startTime[1]+'/'+startTime[2]}+'-'+{endTime[1]+'/'+endTime[2]}</span>&nbsp;
+									<span>{endTime[2]-startTime[2]}晚</span>
 										<Icon type="down" />
 									</span>
 								}>
-								<RangePicker
-									disabledDate={disabledDate}
-									format="YYYY-MM-DD"
-								/>
+								<div>
+									<DatePicker
+										size={"large=38"}
+										style={{ width: 135, height: 38, minHeight: 0, minWidth: 0 }}
+										disabledDate={this.disabledStartDate}
+										// showTime
+										format="YYYY-MM-DD"
+										value={startValue}
+										placeholder="选择日期"
+										onChange={this.onStartChange}
+										onOpenChange={this.handleStartOpenChange}
+									/>
+								</div>
+								<div>
+									<DatePicker
+										style={{ width: 135, height: 38, minHeight: 0, minWidth: 0 }}
+										disabledDate={this.disabledEndDate}
+										// showTime
+										format="YYYY-MM-DD"
+										value={endValue}
+										placeholder="选择日期"
+										onChange={this.onEndChange}
+										open={endOpen}
+										onOpenChange={this.handleEndOpenChange}
+									/>
+								</div>
+
 							</SubMenu>
 							<SubMenu
 								title={
@@ -246,31 +323,31 @@ class DetailList extends Component {
 					<div className="detail-content">
 						<ul className="content-list">
 							{
-								listArr.map((item,index) => {
+								listArr.map((item, index) => {
 									return <li className="content-item" key={item.id} onClick={this.gotoMsDetail(index)}>
-									<img className="img" src={item.img} alt="" />
-									<div className="tags">
-										<ul className="tagsList">
-											<li className="tagsItem">
-												<Tag color="gold">可做饭</Tag>
-												<Tag color="volcano">立即确认</Tag>
-												<Tag color="lime">近地铁</Tag>
-												<Tag color="cyan">全家出游</Tag>
-											</li>
-										</ul>
-									</div>
-									<p className="title">{item.title}</p>
-									<div className="code">
-										<span className="code1">5.0分</span>
-										|<span>整套·1居室</span>
-										|<span>可住{item.maxPersonNum}人</span>
-										|<span>{item.city}</span>
-									</div>
-									<p className="price">
-										<span>￥</span>
-										<span className="num">{item.newPrice}</span>
-									</p>
-								</li>
+										<img className="img" src={item.img} alt="" />
+										<div className="tags">
+											<ul className="tagsList">
+												<li className="tagsItem">
+													<Tag color="gold">可做饭</Tag>
+													<Tag color="volcano">立即确认</Tag>
+													<Tag color="lime">近地铁</Tag>
+													<Tag color="cyan">全家出游</Tag>
+												</li>
+											</ul>
+										</div>
+										<p className="title">{item.title}</p>
+										<div className="code">
+											<span className="code1">5.0分</span>
+											|<span>整套·1居室</span>
+											|<span>可住{item.maxPersonNum}人</span>
+											|<span>{item.city}</span>
+										</div>
+										<p className="price">
+											<span>￥</span>
+											<span className="num">{item.newPrice}</span>
+										</p>
+									</li>
 								})
 							}
 						</ul>
