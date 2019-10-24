@@ -51,16 +51,21 @@ class MsDetail extends Component {
 
   onStartChange = value => {
     this.onChange('startValue', value);
-    const startDate = JSON.stringify(value._d).slice(1, 11)
+    if(value){
+      const startDate = JSON.stringify(value._d).slice(1, 11)
+      this.props.item.startDate = startDate
+    }
 
-    this.props.item.startDate = startDate
+    
     // console.log(this.props.item)
   };
 
   onEndChange = value => {
     this.onChange('endValue', value);
-    const endDate = JSON.stringify(value._d).slice(1, 11)
-    this.props.item.endDate = endDate
+    if(value){
+      const endDate = JSON.stringify(value._d).slice(1, 11)
+      this.props.item.endDate = endDate
+    }
     // console.log(endDate)
   };
 
