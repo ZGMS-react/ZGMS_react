@@ -62,11 +62,10 @@ login=()=>{
 
       <Col span={4} offset={12}>
         <Dropdown overlay={menu}>
-          <Link className="ant-dropdown-link" >
-            {/* <Avatar icon="user"  /> */}
+          <div className="ant-dropdown-link" >
             <Avatar className="user_avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             <span className="user_name"  onClick={this.login}>{userName?user.username:'登录'}</span>
-          </Link>
+          </div>
         </Dropdown>
 
 

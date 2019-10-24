@@ -3,6 +3,7 @@ import Home from '../containers/home';
 import Login from '@conts/login';
 import DetailList from '@conts/DetailList';
 import Order from '@conts/Order'
+import StoryDital from '../components/storyDetail'
 
 const routes = [
   {
@@ -26,6 +27,9 @@ const routes = [
     path:'/order',
     exact:true,
     component:Order
+  },{
+    path:'/storyDetail',
+    component:StoryDital
   }
 ];
 

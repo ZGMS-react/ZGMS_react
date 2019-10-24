@@ -7,11 +7,21 @@ import './index.less'
 const { RangePicker } = DatePicker;
 
 export default class MySwiper extends Component {
+
+  onChange = (field, value) => {
+    this.setState({
+      [field]: value,
+    });
+    console.log(field)
+  };
+  
   render() {
     function disabledDate(current) {
       // Can not select days before today and today
       return current && current < moment().endOf('day');
     }
+
+    
 
 
     return <div className="wrap_wrap">
@@ -40,7 +50,7 @@ export default class MySwiper extends Component {
             <span className="border_right"></span>
           </Col>
           <Col span={12} className="select_Date">
-            <RangePicker disabledDate={disabledDate} format="YYYY-MM-DD" />
+            <RangePicker onclick={this.onChange} disabledDate={disabledDate} format="YYYY-MM-DD" />
           </Col>
           <Col span={6} className="search_btn">
             <Link to="detaillist" component={DetailList}>
