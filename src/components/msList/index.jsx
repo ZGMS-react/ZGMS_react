@@ -15,7 +15,7 @@ class MsList extends Component {
   gotoMsDetail=(index1,index2)=>{
     return ()=>{
       let MsDetailList = this.props.arrHomeList[index1][index2]
-      console.log(MsDetailList)
+      // console.log(MsDetailList)
       this.props.updatedetaillist(MsDetailList)
     }
   }
