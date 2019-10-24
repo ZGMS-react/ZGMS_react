@@ -323,7 +323,7 @@ class MsDetail extends Component {
                     // showSizeChangers
                     onShowSizeChange={onShowSizeChange}
                     defaultCurrent={1}
-                    total={item.loadnlorComment}
+                    total={Number(item.loadnlorComment)}
                     pageSize={3}
                   // pageSizeOptions={[3,5,7,9]}
                   />
