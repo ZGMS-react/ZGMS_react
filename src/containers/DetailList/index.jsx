@@ -13,6 +13,7 @@ import { reqDetailList } from '../../api';
 import { connect } from 'react-redux'
 import Header from '../../components/header'
 import { updatedetaillist } from '../../redux/action-creators';
+import Footer from '../../components/footer'
 
 const { SubMenu } = Menu;
 const { RangePicker } = DatePicker;
@@ -123,7 +124,7 @@ class DetailList extends Component {
 		const { inputValue, listArr } = this.state;
 		const { startValue, endValue, endOpen,startTime,endTime } = this.state;
 		return (
-			<div>
+			<div id='parent'>
 				<div>
 					<Header />
 				</div>
@@ -137,12 +138,11 @@ class DetailList extends Component {
 							<SubMenu
 								title={
 									<span>
-										<span>{startTime[1]+'/'+startTime[2]}+'-'+{endTime[1]+'/'+endTime[2]}</span>&nbsp;
-									<span>{endTime[2]-startTime[2]}晚</span>
+										<span>{startTime[1]?startTime[1]:'10'}/{startTime[2]?startTime[2]:'24'}-{endTime[1]?endTime[1]:'10'}/{endTime[2]?endTime[2]:'25'}</span>&nbsp;
 										<Icon type="down" />
 									</span>
 								}>
-								<div>
+								<div style={{minWidth:'160px'}}>
 									<DatePicker
 										size={"large=38"}
 										style={{ width: 135, height: 38, minHeight: 0, minWidth: 0 }}
@@ -356,6 +356,9 @@ class DetailList extends Component {
 						<Pagination defaultCurrent={1} total={170} className="pagination-list" />
 					</div>
 				</div>
+				
+					<Footer/>
+				
 			</div>
 		)
 	}
