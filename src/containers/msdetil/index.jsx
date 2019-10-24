@@ -8,10 +8,11 @@ import { connect } from 'react-redux'
 import { reqComment } from '../../api';
 import { updatedetaillist } from '../../redux/action-creators';
 import { getItem } from '../../utils/storage';
+import Footer from '../../components/footer'
 
 @connect(
   (state) => ({ item: state.listArr }),
-  {updatedetaillist}
+  { updatedetaillist }
 )
 class MsDetail extends Component {
   //date
@@ -93,10 +94,10 @@ class MsDetail extends Component {
     }
   }
 
-  handleGoTo=()=>{
-    const {item}=this.props
+  handleGoTo = () => {
+    const { item } = this.props
     const { number } = this.state
-    this.props.item.checkinNumber=number
+    this.props.item.checkinNumber = number
     // console.log(this.props.item)
     this.props.updatedetaillist(item)
     this.props.history.replace('/order')
@@ -262,7 +263,7 @@ class MsDetail extends Component {
                 <hr />
 
                 {
-                  commArr.map((comm ,index) => {
+                  commArr.map((comm, index) => {
                     return <div className="access_user" key={index}>
                       <div className="access_top">
                         <img src={comm.commentAvatar} alt="" />
@@ -438,6 +439,7 @@ class MsDetail extends Component {
               </section> */}
             </div>
           </div>
+
           <div id="fixed-menu" className={`content_right ${this.state.needFixed ? 'fixed' : ''}`}>
             <div className="react_root">
               <header className="product_top">
@@ -505,6 +507,9 @@ class MsDetail extends Component {
             </div>
           </div>
         </div>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     )
   }
